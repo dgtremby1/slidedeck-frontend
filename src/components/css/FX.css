@@ -1,0 +1,36 @@
+/* Ripple FX Styling */
+/* Ripple wrapper object */
+.ripple-wrapper {
+    @apply
+    absolute
+    overflow-hidden
+    z-0
+    ml-0
+    mt-0;
+    z-index: 9;
+    border-radius: inherit;
+}
+.button.center .ripple-wrapper {
+    @apply
+    ml-7;
+}
+.rippler {
+    @apply
+    h-4
+    w-4
+    rounded-full
+    bg-carolina;
+    animation: ripple 1s;
+    opacity: 0;
+}
+@keyframes ripple {
+    from {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    to {
+        transform: scale(30);
+        opacity: 0;
+    }
+}
+

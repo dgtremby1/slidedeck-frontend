@@ -1,0 +1,46 @@
+/* Set default text input styles */
+.text-box {
+    @apply
+    h-8
+    px-2
+    rounded
+    filter-none
+    shadow;
+}
+.text-box.has-icon {
+    @apply
+    pl-8
+    ;
+}
+/* Theme text inputs */
+.light .text-box {
+    @apply
+    bg-gray-100;
+}
+.dark .text-box {
+    @apply
+    bg-gray-700;
+}
+/* Text box icon styling */
+.text-box-wrapper .icon {
+    @apply
+    relative 
+    h-8
+    w-4 
+    -mt-8
+    ml-2
+    flex 
+    justify-center
+    items-center
+    opacity-50;
+}
+.text-box-wrapper .icon svg {
+    @apply
+    h-4
+    w-4;
+}
+.text-box-wrapper .icon.focus {
+    @apply
+    text-carolina
+    opacity-100;
+}

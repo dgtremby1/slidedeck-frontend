@@ -1,0 +1,104 @@
+/* Sidebar item styles */
+.sidebar-item {
+    @apply
+    h-8
+    w-full 
+    rounded
+    flex
+    items-center 
+    overflow-hidden 
+    transition-all;
+}
+.light .sidebar-item:hover {
+    @apply
+    bg-gray-100;
+}
+.light .sidebar-item:active {
+    @apply
+    bg-gray-300;
+}
+.dark .sidebar-item:hover {
+    @apply
+    bg-gray-700;
+}
+.dark .sidebar-item:active {
+    @apply
+    bg-gray-900;
+}
+.sidebar-item.active {
+    @apply
+    bg-carolina 
+    text-white 
+    pointer-events-none 
+    shadow !important;
+}
+.sidebar-item-icon {
+    @apply
+    h-8 
+    w-8
+    mr-2
+    flex 
+    items-center 
+    justify-center 
+    flex-shrink-0 
+    text-current;
+    /* transition: margin-left var(--transition); */
+}
+.sidebar-item-icon .icon {
+    @apply
+    h-5 w-5;
+}
+/* .sidebar.open .sidebar-item-icon {
+    @apply
+    ml-2;
+}
+.sidebar.closed .sidebar-item-icon {
+    @apply
+    ml-0;
+} */
+.sidebar-item:hover .sidebar-item-icon {
+    @apply 
+    text-carolina;
+}
+.sidebar-item.active .sidebar-item-icon {
+    @apply 
+    text-white;
+}
+/* Sidebar tooltip styles */
+.sidebar-tooltip {
+    @apply
+    fixed
+    z-50
+    ml-12
+    h-8
+    rounded
+    flex
+    items-center
+    font-normal
+    overflow-hidden
+    px-0
+    w-0
+    opacity-0
+    shadow;
+    transition: width var(--transition),
+                padding var(--transition),
+                opacity var(--transition);
+}
+.sidebar-tooltip p {
+    @apply
+    whitespace-nowrap;
+}
+.sidebar.closed .sidebar-item-wrapper:hover .sidebar-tooltip {
+    @apply
+    w-max
+    px-2
+    opacity-100;
+}
+.light .sidebar-tooltip {
+    @apply
+    bg-white;
+}
+.dark .sidebar-tooltip {
+    @apply
+    bg-gray-700;
+}

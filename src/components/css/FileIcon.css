@@ -1,0 +1,91 @@
+.file-icon {
+    @apply
+    space-x-3
+    flex
+    p-2
+    rounded;
+}
+
+.file-icon .icon {
+    @apply
+    flex-shrink-0
+    rounded-sm
+    shadow
+    flex
+    flex-col
+    text-center
+    bg-white
+    relative;
+}
+.file-icon .icon .type-label {
+    @apply
+    bg-theme
+    text-white
+    font-bold
+    rounded-sm
+    text-xs
+    h-5
+    w-5
+    -bottom-0.5
+    -right-0.5
+    shadow
+    flex
+    items-center
+    justify-center
+    px-1
+    uppercase
+    absolute;
+}
+.file-icon:hover {
+    @apply
+    bg-carolina
+    bg-opacity-25
+    cursor-pointer
+    shadow;
+}
+.file-icon:active {
+    @apply
+    bg-opacity-100;
+}
+.file-icon:active .info .filename {
+    @apply
+    text-white;
+}
+.file-icon:active .info .subtitle {
+    @apply
+    text-white
+    opacity-75;
+}
+
+.file-browser.list .file-icon {
+    @apply
+    w-full;
+}
+.file-browser.list .file-icon .icon {
+    height: 2.75rem;
+    width: 2.1rem;
+}
+.file-browser.list .file-icon .info {
+    @apply truncate;
+}
+.file-browser.list .file-icon .info .filename {
+    @apply truncate;
+}
+
+.file-browser.icons .file-icon .icon {
+    height: 4.25rem;
+    width: 3.25rem;
+}
+.file-browser.icons .file-icon .info {
+    @apply
+    w-32;
+}
+.file-browser.icons .file-icon .info .filename {
+    @apply 
+    max-h-12
+    overflow-hidden;
+}
+
+
+
+/* 2.75rem */

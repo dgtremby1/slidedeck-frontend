@@ -1,0 +1,595 @@
+.template-editor.disabled {
+    @apply
+    opacity-50
+    pointer-events-none;
+}
+.template-editor {
+    @apply
+    mt-4
+    mb-4;
+    /* min-height: 256px; */
+}
+.template-editor .top-message,
+.template-editor .bottom-message {
+    @apply
+    flex
+    items-center
+    justify-center
+    h-8
+    -mb-8
+    space-x-2
+    pointer-events-none
+    text-sm
+    text-gray-400
+    truncate;
+    pointer-events: none !important;
+    transition: opacity var(--transition);
+}
+.template-editor .top-message p,
+.template-editor .bottom-message p {
+    @apply truncate;
+}
+.template-editor .bottom-message.hide {
+    @apply
+    opacity-0;
+}
+.template-editor:hover .top-message {
+    @apply
+    opacity-0;
+}
+.template-editor .bottom-message {
+    @apply
+    /* bg-red-100 */
+    my-4;
+}
+
+.group-blocks {
+    @apply
+    flex
+    -mx-4
+    pb-2
+    -mb-2
+    overflow-x-scroll;
+}
+.group-blocks .group-scroll {
+    @apply
+    flex-grow
+    flex
+    px-4
+    space-x-4;
+}
+.group-blocks .col-group-wrapper {
+    @apply
+    flex-grow
+    flex-shrink-0;
+}
+
+.col-group-controls 
+{
+    @apply 
+    h-8
+    mb-4;
+}
+.col-group-buttons 
+{
+    @apply
+    justify-between
+    space-x-2
+    hidden
+    ;
+}
+.col-group-wrapper:hover 
+.col-group-buttons 
+{
+    @apply
+    flex;
+}
+.col-group-buttons span,
+.ce-buttons span 
+{
+    @apply
+    flex
+    space-x-1;
+}
+.col-group-buttons button,
+.ce-buttons button
+{
+    @apply
+    filter
+    h-8
+    w-8
+    rounded
+    shadow-sm
+    flex
+    items-center
+    justify-center
+    relative;
+}
+.col-group-buttons button svg,
+.ce-buttons button svg {
+    @apply
+    h-4
+    w-4;
+}
+.col-group-buttons 
+button.add-right 
+{
+    @apply
+    transform
+    translate-x-6;
+}
+.col-group-wrapper + .col-group-wrapper 
+.col-group-buttons 
+button.add-left 
+{
+    @apply
+    transform
+    -translate-x-6;
+} 
+.col-group-wrapper:first-of-type
+.col-group-buttons 
+button.add-left 
+{
+    @apply
+    rounded-bl-none;
+}
+.col-group-wrapper:first-of-type
+.col-group-buttons 
+button.move-left 
+{
+    @apply
+    pointer-events-none
+    bg-transparent
+    opacity-20;
+}
+.col-group-wrapper:last-of-type 
+.col-group-buttons 
+button.add-right 
+{
+    @apply
+    rounded-br-none
+    transform-none;
+}
+.col-group-wrapper:last-of-type 
+.col-group-buttons 
+button.move-right 
+{
+    @apply
+    pointer-events-none
+    bg-transparent
+    opacity-20;
+}
+.col-group-wrapper:only-child .col-group-buttons button.remove-self,
+.col-group-wrapper:only-child .col-group-buttons button.remove-self .button-caret,
+.ce-buttons button.disabled 
+{
+    @apply
+    pointer-events-none
+    bg-transparent !important
+    opacity-20;
+}
+.col-group-buttons button .button-caret,
+.ce-buttons button .button-caret
+{
+    @apply
+    h-2
+    w-4
+    bottom-0
+    absolute
+    transform
+    translate-y-2;
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+}
+.col-group-wrapper:first-of-type 
+.col-group-buttons 
+button.add-left 
+.button-caret 
+{
+    @apply
+    w-2
+    left-0;
+    clip-path: polygon(0 0, 0 100%, 100% 0);
+}
+.col-group-wrapper:last-of-type 
+.col-group-buttons 
+button.add-right 
+.button-caret 
+{
+    @apply
+    w-2
+    right-0;
+    clip-path: polygon(0 0, 100% 100%, 100% 0);
+}
+.col-group-buttons button:hover,
+.ce-buttons button:hover {
+    @apply
+    text-carolina;
+}
+.col-group-buttons button:active,
+.new-col button:active,
+.ce-buttons button:active
+{
+    @apply
+    brightness-90;
+}
+
+.col-group-wrapper:hover .col-group {
+    @apply
+    ring-2
+    ring-carolina;
+}
+.group-blocks .col-group {
+    @apply
+    shadow
+    p-2
+    rounded
+    w-full;
+    min-width: 256px;
+}
+.col-group .col-group-header {
+    @apply
+    flex
+    mb-2;
+}
+.col-group .col-group-header > span {
+    @apply
+    text-center
+    space-y-2;
+}
+.col-group .col-group-title {
+    @apply
+    text-gray-400
+    text-sm;
+}
+.col-group .columns {
+    @apply
+    mt-0
+    -m-1
+    p-1
+    flex
+    rounded
+    space-x-0.5
+    overflow-hidden;
+    height: 52px;
+}
+.columns .new-col {
+    @apply
+    bg-opacity-40
+    flex
+    items-center
+    justify-center
+    w-6
+    rounded-sm;
+}
+.new-col button {
+    @apply
+    h-full
+    w-6
+    flex
+    items-center
+    justify-center
+    rounded-sm
+    filter;
+}
+.new-col button:hover {
+    @apply
+    shadow
+    bg-green-500
+    text-white;
+}
+.new-col button svg {
+    @apply
+    text-green-500;
+}
+.new-col button:hover svg {
+    @apply
+    text-white;
+}
+.new-col button p {
+    @apply
+    hidden;
+}
+.columns .new-col:only-child {
+    @apply
+    w-full;
+}
+.columns .new-col:only-child button {
+    @apply
+    h-11
+    w-full;
+}
+.columns .new-col:only-child button p {
+    @apply
+    block
+    ml-2
+    text-sm;
+}
+
+.columns .col {
+    @apply
+    flex-grow
+    p-1
+    px-2
+    overflow-hidden
+    rounded-sm
+    hover:shadow;
+    width: 1px;
+    min-width: 64px;
+    /* background-color: red; */
+}
+.col p {
+    @apply truncate;
+}
+.col .col-heading {
+    @apply
+    text-xs
+    text-center
+    text-gray-400
+    flex
+    items-center
+    justify-center;
+}
+.col .col-heading svg {
+    @apply
+    ml-1
+    h-3
+    w-3
+    rounded-sm
+    border
+    border-current;
+}
+.col .col-name {
+    @apply
+    text-sm
+    text-center
+    h-5;
+}
+.col .col-name.blank {
+    @apply
+    opacity-25
+    italic;
+}
+
+
+.column-editor {
+    @apply
+    flex
+    space-x-2
+    justify-center
+    relative;
+    height: 140px;
+}
+.ce-controls {
+    @apply
+    h-8
+    -mt-12
+    absolute
+    ;
+}
+.ce-center {
+    @apply
+    flex-grow;
+}
+.ce-left, 
+.ce-right {
+    @apply
+    w-2/12
+    flex-shrink-0;
+}
+.ce-header {
+    @apply
+    h-8
+    px-4
+    flex
+    items-center
+    justify-center
+    rounded-t
+    rounded-b-sm
+    text-sm
+    overflow-hidden
+    truncate;
+}
+.ce-header p {
+    @apply
+    truncate;
+}
+.ce-content {
+    @apply
+    mt-1
+    rounded-b
+    rounded-t-sm
+    p-4
+    flex
+    flex-col
+    space-y-2;
+}
+.ce-left .ce-content, 
+.ce-right .ce-content {
+    @apply
+    text-center;
+}
+.ce-center .ce-header {
+    @apply
+    text-white
+    bg-carolina
+    font-bold
+    shadow;
+}
+.ce-center .ce-content {
+    @apply
+    shadow;
+}
+.ce-left .ce-content p, 
+.ce-left .ce-content svg, 
+.ce-left .ce-header p,
+.ce-right .ce-content p, 
+.ce-right .ce-content svg, 
+.ce-right .ce-header p {
+    @apply
+    opacity-25;
+}
+.ce-page {
+    @apply
+    h-8
+    flex
+    items-center
+    justify-center
+    rounded;
+}
+
+/* Colors and theming */
+
+.col-group-buttons .add-right, 
+.col-group-buttons .add-left,
+.col-group-buttons .add-left .button-caret,
+.col-group-buttons .add-right .button-caret {
+    @apply
+    text-green-500;
+}
+.col-group-buttons .add-right:hover, 
+.col-group-buttons .add-left:hover,
+.col-group-buttons .add-left:hover .button-caret,
+.col-group-buttons .add-right:hover .button-caret {
+    @apply
+    text-white
+    bg-green-500;
+}
+.col-group-buttons .remove-self,
+.col-group-buttons .remove-self .button-caret,
+.ce-buttons .remove-self,
+.ce-buttons .remove-self .button-caret {
+    @apply
+    text-red-600;
+}
+.col-group-buttons .remove-self:hover,
+.col-group-buttons .remove-self:hover .button-caret,
+.ce-buttons .remove-self:hover,
+.ce-buttons .remove-self:hover .button-caret {
+    @apply
+    bg-red-600
+    text-white;
+}
+.light .group-blocks .col-group,
+.light .col-group-buttons button, 
+.light .col-group-buttons button .button-caret,
+.light .ce-buttons button,
+.light .ce-buttons button .button-caret {
+    @apply
+    bg-gray-300
+    bg-opacity-50;;
+}
+.dark .group-blocks .col-group,
+.dark .col-group-buttons button, 
+.dark .col-group-buttons button .button-caret,
+.dark .ce-buttons button,
+.dark .ce-buttons button .button-caret {
+    @apply
+    bg-gray-800
+    bg-opacity-50;
+}
+.dark .columns {
+    background-color: #374151;
+}
+.light .columns {
+    background-color: #f4f4f7;
+}
+/* .light .col .col-heading svg {
+    @apply
+    bg-gray-400;
+    color: #f4f4f7;
+}
+.dark .col .col-heading svg {
+    @apply
+    bg-gray-400;
+    color: #374151;
+}
+.col.active .col-heading svg {
+    @apply
+    bg-white
+    text-carolina;
+} */
+.dark .columns .col:hover {
+    background-color: rgb(75, 85, 99);
+}
+.light .columns .col:hover {
+    background-color: white;
+}
+.columns .col.active {
+    @apply
+    bg-carolina 
+    text-white
+    shadow
+    !important;
+}
+.columns .col.active .col-heading {
+    @apply
+    text-white
+    opacity-75;
+}
+.dark .ce-left .ce-header, .dark .ce-left .ce-content {
+    background: linear-gradient(to left, #2b3544, rgba(43,53,68,0));
+}
+.dark .ce-right .ce-header, .dark .ce-right .ce-content {
+    background: linear-gradient(to right, #2b3544, rgba(43,53,68,0));
+}
+.light .ce-left .ce-header, .light .ce-left .ce-content {
+    background: linear-gradient(to left, #e2e5e9, rgba(226,229,233,0));
+}
+.light .ce-right .ce-header, .light .ce-right .ce-content {
+    background: linear-gradient(to right, #e2e5e9, rgba(226,229,233,0));
+}
+.light .ce-center .ce-content {
+    background-color: #e2e5e9;
+}
+.dark .ce-center .ce-content {
+    background-color: #2b3544;
+}
+.dark .ce-page {
+    background-color: #2b3544;
+}
+
+
+.bracket {
+    @apply 
+    h-4
+    -mx-1
+    my-2
+    flex
+    items-center
+    filter
+    brightness-0;
+    display: none;
+}
+.bracket .left {
+    @apply
+    h-4
+    w-4;
+    background: url("/assets/bracket.png") center left / 64px 16px;
+}
+.bracket .center {
+    @apply
+    h-4
+    w-4;
+    background: url("/assets/bracket.png") center center / 64px 16px;
+}
+.bracket .right {
+    @apply
+    h-4
+    w-4;
+    background: url("/assets/bracket.png") center right / 64px 16px;
+}
+.bracket .extension {
+    @apply
+    h-4
+    flex-grow;
+    background-color: #f4f4f7;
+    height: 6px;
+}
+.light .bracket {
+    @apply
+    opacity-10;
+}
+.dark .bracket {
+    @apply
+    opacity-20;
+}

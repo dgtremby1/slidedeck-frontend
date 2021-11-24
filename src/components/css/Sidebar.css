@@ -1,0 +1,152 @@
+/* Sidebar styles */
+.sidebar {
+    @apply
+    flex-shrink-0
+    overflow-hidden
+    p-4
+    pt-8
+    border-r
+    border-none
+    z-50;
+    transition: width var(--transition);
+}
+.sidebar.open {
+    width: var(--sidebar-open-w);
+    /* transition: padding-left var(--transition); */
+    /* @apply pl-8; */
+}
+.sidebar.closed {
+    width: var(--sidebar-closed-w);
+    /* @apply pl-4; */
+}
+.light .sidebar {
+    @apply
+    border-gray-100;
+}
+.dark .sidebar {
+    @apply
+    border-gray-900;
+}
+
+/* Sidebar logo styles */
+.sidebar-logo {
+    @apply
+    mb-8
+    w-full 
+    flex 
+    items-center 
+    justify-start 
+    h-8;
+}
+.sidebar-logo .sidebar-logo-type {
+    @apply
+    overflow-hidden;
+}
+.sidebar-logo .sidebar-logo-type img {
+    @apply
+    h-6
+    ml-2
+    flex-shrink-0;
+}
+.dark .sidebar-logo-type img {
+    filter: brightness(900);
+}
+
+/* Sidebar toggle button styles */
+.toggle-button {
+    @apply
+    h-8
+    w-8
+    flex
+    items-center
+    justify-center
+    flex-shrink-0
+    group
+    rounded
+    text-carolina;
+    /* transition: margin-left var(--transition); */
+}
+/* .sidebar.open .toggle-button {
+    @apply 
+    ml-2;  
+}
+.sidebar.closed .toggle-button {
+    @apply 
+    ml-0;
+} */
+.light .toggle-button:hover {
+    @apply
+    bg-gray-100;
+}
+.light .toggle-button:active {
+    @apply
+    bg-gray-300;
+}
+.dark .toggle-button:hover {
+    @apply
+    bg-gray-700;
+}
+.dark .toggle-button:active {
+    @apply
+    bg-gray-900;
+}
+.toggle-button img {
+    @apply
+    absolute
+    h-6
+    w-6
+    transition-opacity
+    opacity-100;
+}
+.toggle-button:hover img {
+    @apply
+    opacity-0;
+}
+.toggle-button .chevron {
+    @apply 
+    absolute
+    transform
+    transition-opacity
+    opacity-0;
+}
+.toggle-button:hover .chevron {
+    @apply
+    opacity-100;
+}
+.sidebar.open .chevron {
+    @apply
+    rotate-180;
+}
+.sidebar.closed .chevron {
+    @apply
+    rotate-0;
+}
+
+.sidebar-gradient {
+    @apply
+    w-4
+    h-full
+    fixed
+    z-50;
+    transition: margin-left var(--transition);
+    margin-left: var(--sidebar-closed-w);
+}
+.show-sidebar .sidebar-gradient {
+    margin-left: var(--sidebar-open-w);
+}
+.light .sidebar-gradient {
+    background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+}
+.dark .sidebar-gradient {
+    background: linear-gradient(to right, rgb(31, 41, 55), rgba(31, 41, 55, 0));
+}
+
+/* .header-gradient {
+    @apply h-4 mt-4 -mb-4 -mx-4;
+}
+.dark .header-gradient {
+    background: linear-gradient(to bottom, rgb(31, 41, 55), rgba(31, 41, 55, 0));
+}
+.light .header-gradient {
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+} */

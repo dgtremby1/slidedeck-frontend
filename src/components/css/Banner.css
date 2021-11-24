@@ -1,0 +1,51 @@
+.banner {
+    @apply
+    transition-all
+    w-full
+    flex
+    justify-center
+    items-center
+    relative
+    z-40
+    bg-red-500
+    h-10
+    -mb-10
+    shadow-lg
+    transform
+    truncate;
+    color: white !important;
+}
+.banner.show {
+    @apply
+    opacity-100 
+    translate-y-0;
+}
+.banner.hidden {
+    @apply
+    opacity-0 
+    -translate-y-10
+    pointer-events-none;
+}
+
+.banner .banner-close {
+    @apply
+    h-6
+    w-6
+    ml-4
+    mr-2
+    text-white
+    flex
+    items-center
+    justify-center
+    rounded-full;
+}
+.banner .banner-close:hover {
+    @apply
+    bg-red-600
+    shadow;
+}
+.banner .banner-close:active {
+    @apply
+    filter
+    brightness-90;
+}

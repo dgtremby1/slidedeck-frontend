@@ -1,0 +1,38 @@
+/* Header wrapper styles */
+.header {
+    @apply
+    fixed
+    pb-4
+    pt-8
+    px-4
+    z-40;
+    height: var(--header-h);
+    width:  calc(100vw - var(--sidebar-closed-w))
+}
+.light .header {
+    @apply
+    bg-white;
+}
+.dark .header {
+    @apply
+    bg-gray-800;
+}
+.dashboard.show-sidebar .header {
+    width:  calc(100vw - var(--sidebar-open-w));
+}
+/* Header content styles */
+.header-content {
+    @apply 
+    h-8 
+    flex
+    space-x-2;
+}
+.header-gradient {
+    @apply h-4 mt-4 -mb-4 -mx-4;
+}
+.dark .header-gradient {
+    background: linear-gradient(to bottom, rgb(31, 41, 55), rgba(31, 41, 55, 0));
+}
+.light .header-gradient {
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+}

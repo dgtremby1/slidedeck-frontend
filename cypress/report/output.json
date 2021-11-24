@@ -1,0 +1,280 @@
+{
+  "stats": {
+    "suites": 4,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-11-08T12:12:39.019Z",
+    "end": "2021-11-08T12:12:53.672Z",
+    "duration": 4942,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "21547400-8823-460b-8072-8a886b98a145",
+      "title": "",
+      "fullFile": "cypress/integration/dashboard_test.js",
+      "file": "cypress/integration/dashboard_test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d45a764c-ad6c-4d1a-b88b-c3fef3d1ddab",
+          "title": "Check dashboard",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Try login",
+              "fullTitle": "Check dashboard Try login",
+              "timedOut": null,
+              "duration": 2676,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"/login\"); // Type admin as username\ncy.get(\"[type='text']\").type(\"admin\"); // Type admin as password\ncy.get(\"[type='password']\").type(\"admin\"); // Click LOG IN\ncy.contains('LOG IN').click({\n  force: true\n}).then(() => {\n  // Check if router app redirected to dashboard page\n  cy.url().should('include', '/dashboard');\n}); // Check if logo is in dashboard\ncy.get('img').should('have.attr', 'src').should('include', 'slidedeck'); // Check if has all the components\ncy.contains('Home');\ncy.contains('Enter Data');\ncy.contains('Manage Logs');\ncy.contains('Manage Templates');\ncy.contains('Reports');\ncy.contains('Developer Area'); // Navigate the dashboard\ncy.get('button').contains(\"Enter Data\").click({\n  force: true\n}).then(() => {\n  cy.url().should('include', '/new');\n});\ncy.get('button').contains(\"Home\").click({\n  force: true\n}).then(() => {\n  cy.url().should('include', '/home');\n});\ncy.get('button').contains(\"Manage Logs\").click({\n  force: true\n}).then(() => {\n  cy.url().should('include', '/logs');\n  cy.contains('List').click().then(() => {\n    cy.contains('testing testing hello world').should('be.visible');\n    cy.contains('lorem ipsum Dolor').should('be.visible');\n    cy.contains('Sit amet').should('be.visible');\n  });\n  cy.contains('Icons').click().then(() => {\n    cy.contains('testing testing hello world').should('be.visible');\n    cy.contains('lorem ipsum Dolor').should('be.visible');\n    cy.contains('Sit amet').should('be.visible');\n  });\n});\ncy.get('button').contains(\"Manage Templates\").click({\n  force: true\n}).then(() => {\n  cy.url().should('include', '/templates');\n});\ncy.get('button').contains(\"Reports\").click({\n  force: true\n}).then(() => {\n  cy.url().should('include', '/reports');\n});\ncy.get('button').contains(\"Developer Area\").click({\n  force: true\n}).then(() => {\n  cy.url().should('include', '/dev');\n  cy.contains('Default Dark').click().then(() => {\n    cy.get('body').should('have.css', 'background-color', 'rgb(31, 41, 55)');\n  });\n  cy.contains('Default Light').click().then(() => {\n    cy.get('body').should('have.css', 'background-color', 'rgb(255, 255, 255)');\n  });\n});",
+              "err": {},
+              "uuid": "2c507a80-6344-439a-9c39-c34953a29da6",
+              "parentUUID": "d45a764c-ad6c-4d1a-b88b-c3fef3d1ddab",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2c507a80-6344-439a-9c39-c34953a29da6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2676,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "80dca208-c78a-4ac1-a8cb-aefb0149281e",
+      "title": "",
+      "fullFile": "cypress/integration/login_test_components.js",
+      "file": "cypress/integration/login_test_components.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fb48fb1d-02bd-459c-9247-7e25b8d88f61",
+          "title": "Visit the app login page and make sure is contains all the needed components",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Check login page content",
+              "fullTitle": "Visit the app login page and make sure is contains all the needed components Check login page content",
+              "timedOut": null,
+              "duration": 365,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Go to login Page\ncy.visit(\"/login\"); // Check it contains username, password, login button and forgot password\ncy.get(\"[type='text']\").should('be.visible');\ncy.get(\"[type='password']\").should('be.visible');\ncy.get(\"button\").contains(\"LOG IN\").should('be.visible');\ncy.contains(\"Forgot Password?\").should('be.visible'); // Check if url includes login path\ncy.url().should('include', '/login');",
+              "err": {},
+              "uuid": "5538ebd3-e672-43c3-b6be-fdc5c6e6b0bd",
+              "parentUUID": "fb48fb1d-02bd-459c-9247-7e25b8d88f61",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5538ebd3-e672-43c3-b6be-fdc5c6e6b0bd"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 365,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "a177a2f4-47c5-474a-a8a2-bc0ff2901a7a",
+      "title": "",
+      "fullFile": "cypress/integration/login_test_correct_credentials.js",
+      "file": "cypress/integration/login_test_correct_credentials.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d6e17971-84e5-4ee0-9da4-ad60bfee9dfd",
+          "title": "Check login with correct username and password",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Try login",
+              "fullTitle": "Check login with correct username and password Try login",
+              "timedOut": null,
+              "duration": 967,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"/login\"); // Type admin as username\ncy.get(\"[type='text']\").type(\"admin\"); // Type admin as password\ncy.get(\"[type='password']\").type(\"admin\"); // Click LOG IN\ncy.contains('LOG IN').click({\n  force: true\n}).then(() => {\n  // Check if router app redirected to dashboard page\n  cy.url().should('include', '/dashboard');\n});",
+              "err": {},
+              "uuid": "d2c475d2-8f5f-41e5-89e7-18e77e384e48",
+              "parentUUID": "d6e17971-84e5-4ee0-9da4-ad60bfee9dfd",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d2c475d2-8f5f-41e5-89e7-18e77e384e48"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 967,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "72d23dc3-0d00-42a1-9dd8-9fc1268cf139",
+      "title": "",
+      "fullFile": "cypress/integration/login_test_incorrect_credentials.js",
+      "file": "cypress/integration/login_test_incorrect_credentials.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6f2ebe4e-2c20-42fd-9bc7-03de197fa5a8",
+          "title": "Check login with incorrect username and password",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Try login",
+              "fullTitle": "Check login with incorrect username and password Try login",
+              "timedOut": null,
+              "duration": 934,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"/login\"); // Type admin as username\ncy.get(\"[type='text']\").type(\"lololol\"); // Type admin as password\ncy.get(\"[type='password']\").type(\"lololol\"); // Click LOG IN\ncy.contains('LOG IN').click({\n  force: true\n}).then(() => {\n  // Check if router app redirected to dashboard page\n  cy.url().should('include', '/login');\n  cy.contains(\"Invalid username/password. Please try again.\").should('be.visible');\n});",
+              "err": {},
+              "uuid": "556f05c3-01da-4e04-9735-29a4ba729f55",
+              "parentUUID": "6f2ebe4e-2c20-42fd-9bc7-03de197fa5a8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "556f05c3-01da-4e04-9735-29a4ba729f55"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 934,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/report/mochawesome-report"
+      },
+      "version": "6.0.1"
+    }
+  }
+}

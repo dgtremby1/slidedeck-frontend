@@ -1,0 +1,93 @@
+/* Set default button styles */
+.button {
+    @apply
+    relative
+    flex-shrink-0
+    group
+    h-8
+    px-2
+    text-current
+    rounded
+    flex
+    items-center
+    justify-center
+    overflow-hidden
+    whitespace-nowrap
+    transition-all
+    shadow;
+    min-width: 2rem;
+}
+.button:hover {
+    @apply
+    shadow
+    bg-opacity-5;
+}
+.button:disabled {
+    @apply
+    opacity-90
+    cursor-not-allowed;
+}
+.button.center {
+    @apply 
+    pr-10;
+}
+.button .icon {
+    @apply
+    h-4 
+    w-4 
+    mr-2
+    text-current;
+}
+.button:hover .icon {
+    @apply
+    text-carolina;
+}
+.button p {
+    @apply 
+    whitespace-nowrap;
+}
+.light .button {
+    @apply
+    bg-gray-100;
+}
+.light .button:hover {
+    @apply
+    shadow
+    bg-white;
+}
+.light .button:active {
+    @apply
+    bg-gray-300;
+}
+.dark .button {
+    @apply
+    bg-gray-700;
+}
+.dark .button:hover {
+    @apply
+    bg-gray-600;
+}
+.dark .button:active {
+    @apply
+    bg-gray-900;
+}
+/* Set special button styles */
+.button.special {
+    @apply
+    shadow
+    text-white
+    bg-theme;
+}
+.button.special:hover {
+    @apply
+    bg-carolina;
+}
+.button.special:active {
+    @apply
+    filter
+    brightness-90;
+}
+.button.special:hover .icon {
+    @apply
+    text-white;
+}

@@ -1,0 +1,61 @@
+.button-group {
+    @apply 
+    h-8
+    flex
+    w-min
+    rounded
+    shadow
+    p-0.5
+    space-x-0.5;
+}
+.light .button-group {
+    @apply
+    bg-gray-100;
+}
+.dark .button-group {
+    @apply
+    bg-gray-700;
+}
+.button-group .button {
+    @apply
+    h-7
+    rounded-sm
+    relative
+    bg-transparent
+    shadow-none;
+}
+.button-group .button:hover {
+    @apply
+    z-30;
+}
+/* .light .button-group .button-wrapper + .button-wrapper {
+    @apply
+    border-l
+    border-gray-300;
+}
+.dark .button-group .button-wrapper + .button-wrapper {
+    @apply
+    border-l
+    border-gray-700;
+} */
+.button-group .button-wrapper:first-child .button {
+    /* border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px; */
+    @apply
+    rounded-l;
+}
+.button-group .button-wrapper:last-child .button {
+    @apply
+    rounded-r;
+}
+.button-group .button-wrapper.active .button {
+    @apply
+    bg-carolina
+    text-white
+    shadow
+    pointer-events-none;
+}
+.button-group .button-wrapper.active .icon {
+    @apply
+    text-current;
+}

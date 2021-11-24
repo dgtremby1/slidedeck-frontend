@@ -1,0 +1,27 @@
+/* Set default text colors */
+.light div {
+    @apply 
+    text-gray-600;
+}
+.dark div {
+    @apply 
+    text-white;
+}
+.subtitle {
+    @apply 
+    text-sm
+    text-gray-400;
+}
+/* Set body background color */
+body {
+    @apply
+    overflow-hidden;
+}
+.light body {
+    @apply
+    bg-white;
+}
+.dark body {
+    @apply
+    bg-gray-800;
+}

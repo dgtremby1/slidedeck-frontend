@@ -1,0 +1,48 @@
+.auth-background {
+    @apply
+    absolute 
+    h-full 
+    w-full 
+    flex 
+    flex-col 
+    items-center 
+    justify-center;
+}
+
+.auth-card {
+    @apply 
+    w-80 
+    rounded 
+    p-4;
+}
+
+.light .auth-background {
+    @apply
+    bg-gray-100;
+}
+
+.light .auth-card {
+    @apply
+    bg-white;
+}
+
+.dark .auth-background {
+    @apply
+    bg-transparent;
+}
+
+.dark .auth-card {
+    @apply
+    bg-gray-900
+    bg-opacity-10;
+}
+
+.light .dark-logo {
+    @apply
+    hidden;
+}
+
+.dark .light-logo {
+    @apply
+    hidden;
+}
