@@ -15,6 +15,7 @@ import { CgMenuGridR } from "react-icons/cg";
 import { HiPlus } from "react-icons/hi";
 // Import API and static content
 import parsePath from "../../static/parsePath";
+import NewLog from "../../components/NewLog";
 
 const logPages = [
     {name: "recent"},
@@ -74,6 +75,7 @@ const ManageLogs = (props) => {
                     <p className="text-lg font-bold">Your Most Recent Logs</p>
                     <div className="h-4"/>
                     {/* <FileBrowser files={testFiles}/> */}
+                    <FileBrowser from="recent" type="log"/>
                 </>
             break;
         case 1:
@@ -88,6 +90,8 @@ const ManageLogs = (props) => {
             pageContent = 
                 <>
                     <p className="text-lg font-bold">Create a New Log</p>
+                    <div className="h-4"/>
+                    <NewLog changeTemplatePage={changeTemplatePage}/>
                 </>
             break;
         default:

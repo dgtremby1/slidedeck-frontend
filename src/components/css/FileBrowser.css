@@ -49,3 +49,23 @@
     @apply
     ml-4;
 }
+
+.file-browser.mini {
+    @apply
+    /* -mx-4 */
+    py-0
+    bg-transparent
+    rounded-none;
+}
+
+.file-browser.mini .backdrop,
+.file-browser.mini .backdrop-header {
+    @apply
+    bg-transparent;
+}
+
+.file-browser.mini .backdrop-header,
+.file-browser.mini .browser-path {
+    @apply
+    hidden;
+}

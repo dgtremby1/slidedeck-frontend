@@ -52,7 +52,7 @@ const FileIcon = (props) => {
     // const madeDate = new Date(file.created);
 
     return(
-        <div className="file-icon log">
+        <button onClick={props.onClick} className={"file-icon log " + (props.active ? "active" : "")}>
             {/* <div className="icon">
                 <p className="file-size"></p>
                 <p className="file-type">LOG</p>
@@ -72,7 +72,7 @@ const FileIcon = (props) => {
                     {`${modiDate.getMonth()+1}/${modiDate.getDate()}/${modiDate.getFullYear()}`}
                 </p>
             </div>
-        </div>
+        </button>
     )
 
 }

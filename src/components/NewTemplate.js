@@ -473,7 +473,7 @@ const NewTemplate = (props) => {
     const checkFileName = (e) => {
         const value = e.target.value;
         if (value.length === 0) {
-            setBannerText("File name cannot be blank.");
+            setBannerText("Template name cannot be blank.");
             setBannerShow(true);
         }
     }
@@ -574,7 +574,7 @@ const NewTemplate = (props) => {
             <div className="backdrop new-template">
                 <div className="backdrop-header">
                     <span>
-                        <p>Template Name</p>
+                        <p>New Template Name</p>
                         <TextBox 
                             readOnly={!AuthContext.user.loggedIn}
                             value={fileName} 

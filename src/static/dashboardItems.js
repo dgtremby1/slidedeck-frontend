@@ -3,24 +3,27 @@ import { BiTable } from "react-icons/bi";
 import { FaClipboardList } from "react-icons/fa";
 import { HiHome } from "react-icons/hi";
 import { RiBracesFill } from "react-icons/ri";
+import { MdOutlineTableRows, MdOutlineViewColumn } from "react-icons/md"
 
 const dashboardItems = [
     {
         title: "Home",
         path: "/home",
         icon: HiHome
-    }, {
-        title: "Enter Data",
-        path: "/new",
-        icon: BiTable
-    }, {
+    }, 
+    // {
+    //     title: "Enter Data",
+    //     path: "/new",
+    //     icon: BiTable
+    // }, 
+    {
         title: "Manage Logs",
         path: "/logs",
-        icon: AiTwotoneFolderOpen
+        icon: MdOutlineTableRows
     }, {
         title: "Manage Templates",
         path: "/templates",
-        icon: AiTwotoneFolderOpen
+        icon: MdOutlineViewColumn
     }, {
         title: "Reports",
         path: "/reports",

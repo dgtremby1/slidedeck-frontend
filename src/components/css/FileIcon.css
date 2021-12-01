@@ -3,7 +3,8 @@
     space-x-3
     flex
     p-2
-    rounded;
+    rounded
+    text-left;
 }
 
 .file-icon .icon {
@@ -36,22 +37,26 @@
     uppercase
     absolute;
 }
-.file-icon:hover {
+.file-icon:hover,
+.file-icon.active {
     @apply
     bg-carolina
     bg-opacity-25
     cursor-pointer
     shadow;
 }
-.file-icon:active {
+.file-icon:active,
+.file-icon.active {
     @apply
     bg-opacity-100;
 }
-.file-icon:active .info .filename {
+.file-icon:active .info .filename,
+.file-icon.active .info .filename {
     @apply
     text-white;
 }
-.file-icon:active .info .subtitle {
+.file-icon:active .info .subtitle,
+.file-icon.active .info .subtitle {
     @apply
     text-white
     opacity-75;

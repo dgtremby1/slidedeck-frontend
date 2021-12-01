@@ -51,7 +51,8 @@ const FileBrowser = (props) => {
 
     const AuthContext = useContext(Auth.Context);
     const [files, setFiles] = useState([]);
-    const [view, setView] = useState(0);
+    const [active, setActive] = useState(-1);
+    const [view, setView] = useState(props.view ? props.view : 0);
     const [loading, setLoading] = useState(false);
     const [bannerShow, setBannerShow] = useState(false);
     const [bannerText, setBannerText] = useState("");
@@ -90,6 +91,13 @@ const FileBrowser = (props) => {
         // console.log(data);
     }
 
+    const onFileClick = (file, i) => {
+        setActive(i);
+        if (props.onSelect) {
+            props.onSelect(file);
+        }
+    }
+
     useEffect(() => {
         if(AuthContext.user.loggedIn) {
             getFiles(type, from);
@@ -101,7 +109,7 @@ const FileBrowser = (props) => {
     }, [from, type]);
 
     return (
-        <div className={"file-browser backdrop " + (view === 0 ? "icons" : "list")}>
+        <div className={"file-browser backdrop " + (view === 0 ? "icons" : "list") + (props.mini ? " mini" : "")}>
             <div className="backdrop-header">
                 <span>
                     <p>View as</p>
@@ -128,7 +136,12 @@ const FileBrowser = (props) => {
             {(fileCount > 0) ? 
                 <div className="preview-box">
                     {files.map((file, i) => {return(
-                        <FileIcon type={type} file={file} key={i}/>
+                        <FileIcon 
+                            active={(i == active) ? true : false}
+                            onClick={() => {onFileClick(file, i)}} 
+                            type={type} 
+                            file={file} 
+                            key={i}/>
                     )})}
                 </div>
                 :

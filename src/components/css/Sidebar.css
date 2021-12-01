@@ -127,7 +127,7 @@
     w-4
     h-full
     fixed
-    z-50;
+    z-40;
     transition: margin-left var(--transition);
     margin-left: var(--sidebar-closed-w);
 }

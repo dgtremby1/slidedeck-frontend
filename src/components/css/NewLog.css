@@ -1,0 +1,105 @@
+/* .new-log .template-select {
+    @apply
+    bg-red-300
+    pb-0;
+} */
+
+.template-select .template-list {
+    @apply
+    overflow-y-scroll
+    overflow-x-hidden
+    w-1/2
+    md:w-1/3;
+    min-width: 14rem;
+    height: 26rem;
+}
+
+.template-select .new-log-editor {
+    @apply
+    /* bg-blue-300 */
+    flex-grow
+    p-4
+    m-2
+    ml-0
+    rounded
+    overflow-hidden
+    shadow;
+}
+
+.new-log-editor .blank-message {
+    @apply
+    h-full
+    w-full
+    flex
+    flex-grow
+    items-center
+    justify-center;
+}
+
+.new-log-editor .new-log-header {
+    @apply
+    bg-carolina
+    /* bg-opacity-10 */
+    text-white
+    -m-4
+    mb-4
+    p-2
+    flex
+    space-x-2
+    justify-center
+    items-center;
+}
+
+.new-log-header .small-icon {
+    @apply
+    bg-theme
+    shadow
+    flex
+    items-center
+    justify-center
+    text-white
+    font-bold
+    rounded-sm
+    text-xs
+    h-5
+    w-5;
+}
+
+.new-log-editor .columns-preview {
+    @apply
+    /* bg-red-300 */
+    flex
+    space-x-2;
+}
+
+.new-log-editor .columns-preview .template-col {
+    @apply
+    flex-grow
+    mb-2;
+}
+
+.template-col .col-name {
+    @apply
+    bg-red-300
+    text-sm
+    p-2
+    mb-2
+    rounded
+    text-center;
+}
+
+.dark .new-log-editor {
+    background-color: #2b3444;
+}
+
+.dark .new-log-editor .template-col .col-name {
+    background-color: #374151;
+}
+
+.light .new-log-editor {
+    background-color: #e1e5e9;
+}
+
+.light .new-log-editor .template-col .col-name {
+    background-color: #f4f4f6;
+}
