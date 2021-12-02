@@ -29,13 +29,53 @@ const Signup = (props) => {
   const [code, setCode] = useState("");
   const [image, setImage] = useState(null);
   const [isImageNull, setIsImageNull] = useState(true);
-  const onChange = (e) => {
+  const [error, setError] = useState(false);
+  const onImageChange = (e) => {
     const file = e.target.files[0];
     setIsImageNull(false);
     setImage(file);
   };
+  const onFullNameChange = (e) => {
+    let value = e.target.value;
+    setFullName(value);
+    setError(false);
+  };
+  const onUsernameChange = (e) => {
+    let value = e.target.value;
+    setUsername(value);
+    setError(false);
+  };
+  const onPasswordChange = (e) => {
+    let value = e.target.value;
+    setPassword(value);
+    setError(false);
+  };
+  const onConfirmPasswordChange = (e) => {
+    let value = e.target.value;
+    setConfirmPassword(value);
+    setError(false);
+  };
+  const onCodeChange = (e) => {
+    let value = e.target.value;
+    setCode(value);
+    setError(false);
+  };
+  const onEmailChange = (e) => {
+    let value = e.target.value;
+    setEmail(value);
+    setError(false);
+  };
   const handleRegistration = (data) => {
-    console.log(image);
+    const user = {
+      name: fullName,
+      username: username,
+      password: password,
+      code: code,
+      email: email,
+      signature: image,
+    };
+
+    console.log(user);
   };
   const onErrors = (errors) => {
     console.log(errors);
@@ -60,12 +100,14 @@ const Signup = (props) => {
               <div className="auth-col">
                 <span>
                   <TextBox
+                    onChange={onFullNameChange}
                     icon={BsFillPersonLinesFill}
                     className="w-full"
                     type="text"
                     placeholder="Full Name"
                   />
                   <TextBox
+                    onChange={onEmailChange}
                     icon={MdEmail}
                     className="w-full"
                     type="text"
@@ -75,7 +117,7 @@ const Signup = (props) => {
                 {isImageNull ? (
                   <div>
                     <Upload
-                      onChange={onChange}
+                      onImageChange={onImageChange}
                       register={register}
                       name={"image"}
                       title="Upload Signature"
@@ -98,12 +140,14 @@ const Signup = (props) => {
               <div className="auth-col">
                 <span>
                   <TextBox
+                    onChange={onUsernameChange}
                     icon={FaUserAlt}
                     className="w-full"
                     type="text"
                     placeholder="Username"
                   />
                   <TextBox
+                    onChange={onPasswordChange}
                     icon={FaLock}
                     className="w-full"
                     type="password"
@@ -111,6 +155,7 @@ const Signup = (props) => {
                   />
                 </span>
                 <TextBox
+                  onChange={onConfirmPasswordChange}
                   icon={FaLock}
                   className="w-full"
                   type="password"
@@ -118,6 +163,7 @@ const Signup = (props) => {
                 />
                 <div className="flex-grow" />
                 <TextBox
+                  onChange={onCodeChange}
                   icon={FaLock}
                   className="w-full"
                   type="password"

@@ -46,7 +46,7 @@ const Upload = (props) => {
                 </p>
               </div>
               <input
-                onChange={props.onChange}
+                onChange={props.onImageChange}
                 type="file"
                 ref={reference}
                 name={props.name}
