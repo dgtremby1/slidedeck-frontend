@@ -22,7 +22,7 @@ import { HiPlus } from "react-icons/hi";
 import parsePath from "../../static/parsePath";
 
 const templatePages = [
-    {name: "recent"},
+    // {name: "recent"},
     {name: "all"},
     {name: "new"},
 ]
@@ -105,9 +105,9 @@ const ManageTemplates = (props) => {
         <>
             <Header>
                 <ButtonGroup active={pageState.i} buttons={[
-                    <Button onClick={() => {changeTemplatePage(0)}} icon={FaRegClock}>Recent Templates</Button>,
-                    <Button onClick={() => {changeTemplatePage(1)}} icon={CgMenuGridR}>All Templates</Button>,
-                    <Button onClick={() => {changeTemplatePage(2)}} icon={HiPlus}>New Template</Button>
+                    // <Button onClick={() => {changeTemplatePage(0)}} icon={FaRegClock}>Recent Templates</Button>,
+                    <Button onClick={() => {changeTemplatePage(0)}} icon={CgMenuGridR}>All Templates</Button>,
+                    <Button onClick={() => {changeTemplatePage(1)}} icon={HiPlus}>New Template</Button>
                 ]}/>
             </Header>
             <Page className="with-header">

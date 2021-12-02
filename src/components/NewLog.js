@@ -13,6 +13,7 @@ import Banner from "./Banner";
 import { FaCheck } from "react-icons/fa";
 // Import API and static content
 import api from "../static/api";
+import utils from "../static/utils";
 
 const NewLog = (props) => {
 
@@ -21,6 +22,7 @@ const NewLog = (props) => {
     const [selectedTemplate, setSelectedTemplate] = useState(undefined);
     const [newLogName, setNewLogName] = useState("New Log");
     const [columns, setColumns] = useState([]);
+    const [colDefaults, setColDefaults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [bannerShow, setBannerShow] = useState(false);
     const [bannerText, setBannerText] = useState("An error has occurred.");
@@ -45,23 +47,37 @@ const NewLog = (props) => {
         setNewLogName(`New Log ${data.result.length + 1}`);
     }
 
+    const updateColumnDefault = (i, e) => {
+        const value = e.target.value;
+        // alert(`${i}: ${value}`);
+        setColDefaults((defaults) => {
+            const clone = utils.clone(defaults);
+            clone[i] = value;
+            return clone;
+        });
+    }
+
     const onTemplateClick = (file) => {
         // console.log(file);
         let columns = [];
+        let defaults = [];
         for (let header in file.headers) {
             // console.log(header);
             columns.push(header);
+            defaults.push("");
         }
         setSelectedTemplate(file);
         setColumns(columns);
+        setColDefaults(defaults);
     }
 
     const onNewLogSuccess = (data) => {
         // console.log(data);
-        props.changeTemplatePage(1);
+        props.changeTemplatePage(0);
     }
 
     const submitNewLog = () => {
+
         if (!selectedTemplate) {
             setBannerText("No template selected.");
             setBannerShow(true);
@@ -69,14 +85,23 @@ const NewLog = (props) => {
             setBannerText("Log name cannot be blank");
             setBannerShow(true);
         } else {
+
+            const presets = [];
+            for (let i = 0; i < columns.length; i++) {
+                presets.push({
+                    name: columns[i],
+                    value: colDefaults[i]
+                });
+            }
             const log = {
                 template: selectedTemplate.id,
                 name: newLogName,
-                presets: [],
+                presets: presets,
                 token: AuthContext.user.token
             };
             api.post_log_create(log, onNewLogSuccess);
         }
+
     }
 
     useEffect(() => {
@@ -141,7 +166,7 @@ const NewLog = (props) => {
                                     </div>
                                 </div>
                                 <div className="text-center my-4">
-                                    <p className="subtitle">Chosen template has {columns.length} {columns.length == 1 ? "column" : "columns"}</p>
+                                    <p className="subtitle italic">Chosen template has {columns.length} {columns.length == 1 ? "column" : "columns"}.</p>
                                 </div>
                                 <div className="columns-preview">
                                     {columns.map((colName, i) => {return(
@@ -149,15 +174,24 @@ const NewLog = (props) => {
                                             <div className="col-name">
                                                 <p className="truncate">{colName}</p>
                                             </div>
-                                            <TextBox placeholder="Optional default value" className="w-full"/>
+                                            <div className="h-2"/>
+                                            <TextBox
+                                                onChange={(e) => updateColumnDefault(i, e)}
+                                                value={colDefaults[i]}
+                                                type="text"
+                                                placeholder={`Default value ${i+1}`} 
+                                                className="w-full"
+                                            />
                                         </div>
                                     )})}
                                 </div>
+                                <p className="w-full mt-2 text-center subtitle italic">Default values are optional.</p>
                             </div>
                         }
                     </div>
                 </div>
                 <div className="backdrop-footer">
+                    <div className="flex-grow"/>
                     <Button onClick={submitNewLog} icon={FaCheck} className="special">Create New Log</Button>
                 </div>
             </div>

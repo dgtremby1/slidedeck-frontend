@@ -18,7 +18,7 @@ import parsePath from "../../static/parsePath";
 import NewLog from "../../components/NewLog";
 
 const logPages = [
-    {name: "recent"},
+    // {name: "recent"},
     {name: "all"},
     {name: "new"},
 ]
@@ -72,21 +72,12 @@ const ManageLogs = (props) => {
         case 0:
             pageContent = 
                 <>
-                    <p className="text-lg font-bold">Your Most Recent Logs</p>
-                    <div className="h-4"/>
-                    {/* <FileBrowser files={testFiles}/> */}
-                    <FileBrowser from="recent" type="log"/>
-                </>
-            break;
-        case 1:
-            pageContent = 
-                <>
                     <p className="text-lg font-bold">Browse All Logs</p>
                     <div className="h-4"/>
                     <FileBrowser from="all" type="log"/>
                 </>
             break;
-        case 2:
+        case 1:
             pageContent = 
                 <>
                     <p className="text-lg font-bold">Create a New Log</p>
@@ -103,9 +94,9 @@ const ManageLogs = (props) => {
         <>
             <Header>
                 <ButtonGroup active={pageState.i} buttons={[
-                    <Button onClick={() => {changeTemplatePage(0)}} icon={FaRegClock}>Recent Logs</Button>,
-                    <Button onClick={() => {changeTemplatePage(1)}} icon={CgMenuGridR}>All Logs</Button>,
-                    <Button onClick={() => {changeTemplatePage(2)}} icon={HiPlus}>New Log</Button>
+                    // <Button onClick={() => {changeTemplatePage(0)}} icon={FaRegClock}>Recent Logs</Button>,
+                    <Button onClick={() => {changeTemplatePage(0)}} icon={CgMenuGridR}>All Logs</Button>,
+                    <Button onClick={() => {changeTemplatePage(1)}} icon={HiPlus}>New Log</Button>
                 ]}/>
             </Header>
             <Page className="with-header">

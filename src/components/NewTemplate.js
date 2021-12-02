@@ -554,7 +554,7 @@ const NewTemplate = (props) => {
     const onSuccess = (data) => {
         // console.log(data);
         setPostLoading(false);
-        props.changeTemplatePage(1);
+        props.changeTemplatePage(0);
     }
 
     useEffect(() => {

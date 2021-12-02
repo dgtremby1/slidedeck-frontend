@@ -88,7 +88,7 @@ const FileBrowser = (props) => {
     const onGetSuccess = (data) => {
         setLoading(false);
         setFiles(data.result);
-        // console.log(data);
+        console.log(data);
     }
 
     const onFileClick = (file, i) => {
@@ -124,10 +124,10 @@ const FileBrowser = (props) => {
                         >List</Button>
                     ]}/>
                 </span>
-                <span>
+                {/* <span>
                     <p>Sort by</p>
                     <Button icon={FaChevronDown}>Date Created</Button>
-                </span>
+                </span> */}
                 {loading && <LoadSpinner/>}
             </div>
             <div className="-mx-4">

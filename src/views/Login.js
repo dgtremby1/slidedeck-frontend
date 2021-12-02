@@ -84,35 +84,37 @@ const Login = (props) => {
                     </div>
                     <div className="h-12"/>
                     <div className="h-4"/>
-                    <TextBox 
-                        icon={FaUserAlt}
-                        className="w-full"
-                        type="text"
-                        placeholder="username" 
-                        onChange={onUsernameChange}
-                    />
-                    <div className="h-2"/>
-                    <TextBox 
-                        icon={FaLock}
-                        className="w-full"
-                        type="password"
-                        placeholder="password" 
-                        onChange={onPasswordChange}
-                    />
-                    <div className="h-4"/>
-                    {loading ? 
-                        <div className="w-full flex justify-center items-center">
-                            <LoadSpinner/>
-                        </div>
-                        :
-                        <Button id="login"
-                            disabled={!username || !password}  
-                            className="special center w-full font-bold" 
-                            icon={FaChevronRight}
-                            onClick={handleLoginButton}>
-                            LOG IN
-                        </Button>
-                    }
+                    <form>
+                        <TextBox 
+                            icon={FaUserAlt}
+                            className="w-full"
+                            type="text"
+                            placeholder="username" 
+                            onChange={onUsernameChange}
+                        />
+                        <div className="h-2"/>
+                        <TextBox 
+                            icon={FaLock}
+                            className="w-full"
+                            type="password"
+                            placeholder="password" 
+                            onChange={onPasswordChange}
+                        />
+                        <div className="h-4"/>
+                        {loading ? 
+                            <div className="w-full flex justify-center items-center">
+                                <LoadSpinner/>
+                            </div>
+                            :
+                            <Button id="login"
+                                disabled={!username || !password}  
+                                className="special center w-full font-bold" 
+                                icon={FaChevronRight}
+                                onClick={handleLoginButton}>
+                                LOG IN
+                            </Button>
+                        }
+                    </form>
                     <div className="h-4"/>
                     <div className="text-center">
                         <p className="text-sm underline text-theme hover:text-carolina cursor-pointer">Forgot Password?</p>
