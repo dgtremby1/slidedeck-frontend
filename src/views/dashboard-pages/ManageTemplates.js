@@ -74,7 +74,7 @@ const ManageTemplates = (props) => {
         case "recent":
             pageContent = 
                 <>
-                    <p className="text-lg font-bold">Your Most Recent Templates</p>
+                    <p className="h-8 flex items-center text-lg font-bold">Your Most Recent Templates</p>
                     <div className="h-4"/>
                     <FileBrowser from="recent" type="template"/>
                 </>
@@ -82,7 +82,7 @@ const ManageTemplates = (props) => {
         case "all":
             pageContent = 
                 <>
-                    <p className="text-lg font-bold">Browse All Templates</p>
+                    <p className="h-8 flex items-center text-lg font-bold">Browse All Templates</p>
                     <div className="h-4"/>
                     <FileBrowser from="all" type="template"/>
                 </>
@@ -90,7 +90,7 @@ const ManageTemplates = (props) => {
         case "new":
             pageContent = 
                 <>
-                    <p className="text-lg font-bold">Create a New Template</p>
+                    <p className="h-8 flex items-center text-lg font-bold">Create a New Template</p>
                     <div className="h-4"/>
                     {/* <TextBox type="text" placeholder="New Template Name"/> */}
                     <NewTemplate changeTemplatePage={changeTemplatePage} type="template"/>

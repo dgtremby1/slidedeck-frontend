@@ -62,30 +62,30 @@
     opacity-75;
 }
 
-.file-browser.list .file-icon {
+.list .file-icon {
     @apply
     w-full;
 }
-.file-browser.list .file-icon .icon {
+.list .file-icon .icon {
     height: 2.75rem;
     width: 2.1rem;
 }
-.file-browser.list .file-icon .info {
+.list .file-icon .info {
     @apply truncate;
 }
-.file-browser.list .file-icon .info .filename {
+.list .file-icon .info .filename {
     @apply truncate;
 }
 
-.file-browser.icons .file-icon .icon {
+.icons .file-icon .icon {
     height: 4.25rem;
     width: 3.25rem;
 }
-.file-browser.icons .file-icon .info {
+.icons .file-icon .info {
     @apply
     w-32;
 }
-.file-browser.icons .file-icon .info .filename {
+.icons .file-icon .info .filename {
     @apply 
     max-h-12
     overflow-hidden;

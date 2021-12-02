@@ -2,6 +2,8 @@
     @apply
     p-2
     -mx-4;
+    max-height: 32rem;
+    overflow-y: scroll;
 }
 .file-browser.icons .preview-box {
     @apply
@@ -56,6 +58,10 @@
     py-0
     bg-transparent
     rounded-none;
+}
+
+.file-browser.mini .preview-box {
+    max-height: max-content;
 }
 
 .file-browser.mini .backdrop,

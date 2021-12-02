@@ -88,7 +88,7 @@ const FileBrowser = (props) => {
     const onGetSuccess = (data) => {
         setLoading(false);
         setFiles(data.result);
-        console.log(data);
+        // console.log(data);
     }
 
     const onFileClick = (file, i) => {

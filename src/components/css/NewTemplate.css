@@ -593,3 +593,10 @@ button.add-right
     @apply
     opacity-20;
 }
+
+.add-left, .add-right {
+    @apply
+    opacity-0
+    pointer-events-none
+    !important;
+}
