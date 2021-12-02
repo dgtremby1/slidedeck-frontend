@@ -12,7 +12,7 @@ const api = {
     const path = `${url}/login`;
     axios
       .put(path, {
-        name: user.name,
+        username: user.name,
         password: user.password,
       })
       .then((response) => {
