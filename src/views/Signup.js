@@ -65,6 +65,20 @@ const Signup = (props) => {
     setEmail(value);
     setError(false);
   };
+  const handleUpload = async () => {
+    try {
+      const key = `${image.name}_${email}`;
+      let fileData = new FormData();
+      fileData.append("FileKey", image);
+      fileData.append("ImageName", key);
+      console.log(image);
+      console.log(fileData);
+      const result = await api.post_upload(fileData, key);
+      console.log(result);
+    } catch {
+      console.log("Error");
+    }
+  };
   const handleRegistration = (data) => {
     const user = {
       name: fullName,
@@ -95,7 +109,7 @@ const Signup = (props) => {
               className="w-52"
             />
           </div>
-          <form onSubmit={handleSubmit(handleRegistration, onErrors)}>
+          <form onSubmit={handleSubmit(handleUpload, onErrors)}>
             <div className="auth-columns">
               <div className="auth-col">
                 <span>

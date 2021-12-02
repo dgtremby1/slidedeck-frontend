@@ -1,6 +1,12 @@
 import axios from "axios";
 
 const url = "https://slidedeck-backend.herokuapp.com/";
+const microservices_url =
+  "https://4gwrvrti1b.execute-api.us-east-1.amazonaws.com/dev/upload_signature";
+const headers = {
+  "Content-Type": "multipart/form-data",
+  "Access-Control-Allow-Origin": "*",
+};
 
 /** Async Axios API calls in one neat callable object.
  *  @example
@@ -8,6 +14,9 @@ const url = "https://slidedeck-backend.herokuapp.com/";
  *  api.get_template(token, resultHandler);
  *  */
 const api = {
+  post_upload: (file, key) => {
+    return axios.post(microservices_url, file, { headers });
+  },
   put_login: (user, callback) => {
     const path = `${url}/login`;
     axios
