@@ -1,14 +1,11 @@
-
 .auth-window {
-    @apply
-    bg-white
+  @apply bg-white
     rounded
     overflow-hidden;
 }
 
 .auth-logo {
-    @apply
-    h-32
+  @apply h-32
     w-full
     flex
     items-center
@@ -17,21 +14,18 @@
 }
 
 .auth-columns {
-    @apply
-    flex
+  @apply flex
     space-x-6
     p-6;
 }
 
 .auth-col {
-    @apply
-    space-y-4
+  @apply space-y-4
     flex
     flex-col;
 }
 
 .auth-col span {
-    @apply
-    space-y-2
+  @apply space-y-2
     block;
 }
