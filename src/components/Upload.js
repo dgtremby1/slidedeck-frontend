@@ -4,10 +4,14 @@ import React from "react";
 // Import components
 import Button from "./Button";
 
+import { useRef } from "react";
+
 // Import icons
 import { FaFileSignature } from "react-icons/fa";
 
 const Upload = (props) => {
+  const reference = useRef(props.register);
+
   return (
     <div className="flex justify-center mt-8">
       <div className="max-w-2xl rounded-lg shadow-xl bg-gray-50">
@@ -41,7 +45,13 @@ const Upload = (props) => {
                   {props.subtitle}
                 </p>
               </div>
-              <input type="file" className="opacity-0" />
+              <input
+                onChange={props.onChange}
+                type="file"
+                ref={reference}
+                name={props.name}
+                className="opacity-0"
+              />
             </label>
           </div>
         </div>
