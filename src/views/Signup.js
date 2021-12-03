@@ -80,8 +80,8 @@ const Signup = (props) => {
       const result = await api.post_upload(fileData, key);
       console.log(result);
     } catch {
-    //   setBannerText("A specific error has occurred here.");
-    //   setBannerShow(true);
+      //   setBannerText("A specific error has occurred here.");
+      //   setBannerShow(true);
       console.log("Error");
     }
   };
@@ -105,9 +105,11 @@ const Signup = (props) => {
       <Helmet>
         <title>Welcome</title>
       </Helmet>
-      <Banner 
+      <Banner
         show={bannerShow}
-        dismiss={() => {setBannerShow(false)}}
+        dismiss={() => {
+          setBannerShow(false);
+        }}
       >
         {bannerText}
       </Banner>

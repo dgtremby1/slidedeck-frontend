@@ -37,7 +37,9 @@ const DeleteModal = (props) => {
                 Delete
               </button> */}
               <Button onClick={props.onCancel}>Cancel</Button>
-              <Button icon={FaTrashAlt} className="warn">Delete</Button>
+              <Button icon={FaTrashAlt} className="warn">
+                Delete
+              </Button>
             </div>
           </div>
         </div>

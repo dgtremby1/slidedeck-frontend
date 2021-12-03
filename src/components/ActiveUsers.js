@@ -16,7 +16,6 @@ const ActiveUsers = (props) => {
 
   return (
     <div>
-
       <div className="mb-4 flex items-center justify-between">
         <p>This is a list of all active users and their information.</p>
         {/* <div>

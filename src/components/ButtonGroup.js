@@ -8,23 +8,23 @@ import React from "react";
 // Import API and static content
 
 const ButtonGroup = (props) => {
+  // const [active, setActive] = useState(props.active ? props.active : 0);
+  const active = props.active;
 
-    // const [active, setActive] = useState(props.active ? props.active : 0);
-    const active = props.active;
-
-    return(
-        <div className="button-group">
-            {props.buttons.map((button, i) => {return(
-                <div 
-                    key={i} 
-                    className={"button-wrapper " + (i === active ? "active" : "")}
-                >
-                    {button}
-                </div>
-            )})}
-        </div>
-    )
-
-}
+  return (
+    <div className="button-group">
+      {props.buttons.map((button, i) => {
+        return (
+          <div
+            key={i}
+            className={"button-wrapper " + (i === active ? "active" : "")}
+          >
+            {button}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 export default ButtonGroup;
