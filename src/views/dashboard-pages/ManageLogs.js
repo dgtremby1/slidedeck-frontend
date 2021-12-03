@@ -97,7 +97,7 @@ const ManageLogs = (props) => {
         console.log(log);
         setSelectedLog(log);
         setSelectedTemplate(undefined);
-        api.get_template_id(log.template, AuthContext.user.token, fetchedSelectedTemplate);
+        api.get_templates_id(log.template, AuthContext.user.token, fetchedSelectedTemplate);
     }
 
     const readTemplateColumns = (template) => {
@@ -137,7 +137,7 @@ const ManageLogs = (props) => {
         console.log(data);
     }
 
-    const createNewSlide = () => {
+    const postNewSlide = () => {
         const token = AuthContext.user.token;
         const logId = selectedLog.id;
         const slide = {
@@ -148,7 +148,7 @@ const ManageLogs = (props) => {
         for (let i = 0; i < columns.length; i++) {
             slide.fields[columns[i]] = "";
         }
-        api.post_log_id_slide(logId, slide, gotNewSlide);
+        api.post_logs_id_slides_create(logId, slide, gotNewSlide);
         console.log(slide);
     }
 
@@ -321,7 +321,7 @@ const ManageLogs = (props) => {
                                         <div className="row-index" key={i}><p>{i+1}</p></div>
                                     )})}
                                     <Button 
-                                        onClick={createNewSlide}
+                                        onClick={postNewSlide}
                                         title="add a new slide (row)" 
                                         icon={FaPlus} 
                                         className="row-add"

@@ -123,13 +123,13 @@ const NewLog = (props) => {
                 token: AuthContext.user.token
             };
             // console.log(log);
-            api.post_log_create(log, onNewLogSuccess);
+            api.post_logs_create(log, onNewLogSuccess);
         }
 
     }
 
     useEffect(() => {
-        api.get_log(AuthContext.user.token, appendFileNum);
+        api.get_logs(AuthContext.user.token, appendFileNum);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

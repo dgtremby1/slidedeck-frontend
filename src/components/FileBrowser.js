@@ -65,12 +65,12 @@ const FileBrowser = (props) => {
         if (from.includes("all")) {
             if (type.includes("template")) {
                 // get all templates
-                api.get_template(AuthContext.user.token, onGetSuccess);
+                api.get_templates(AuthContext.user.token, onGetSuccess);
                 setLoading(true);
             }
             if (type.includes("log")) {
                 // get all logs
-                api.get_log(AuthContext.user.token, onGetSuccess);
+                api.get_logs(AuthContext.user.token, onGetSuccess);
                 setLoading(true);
             }
         }

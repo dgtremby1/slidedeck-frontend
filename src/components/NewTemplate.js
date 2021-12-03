@@ -541,7 +541,7 @@ const NewTemplate = (props) => {
         if (checkAuth()) {
             const {status, messages} = checkTemplate(newTemplate);
             if (status) {
-                api.post_template_create(newTemplate, onSuccess);
+                api.post_templates_create(newTemplate, onSuccess);
             } else {
                 setPostLoading(false);
                 setBannerShow(true);
@@ -561,7 +561,7 @@ const NewTemplate = (props) => {
 
     useEffect(() => {
         if (checkAuth()) {
-            api.get_template(AuthContext.user.token, appendFileNum);
+            api.get_templates(AuthContext.user.token, appendFileNum);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

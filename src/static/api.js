@@ -48,7 +48,7 @@ const api = {
         console.log(error);
       });
   },
-  post_template_create: (template, callback) => {
+  post_templates_create: (template, callback) => {
     const path = `${url}/templates/create`;
     axios
       .post(path, {
@@ -63,7 +63,7 @@ const api = {
         console.log(error);
       });
   },
-  get_template: (token, callback) => {
+  get_templates: (token, callback) => {
     const path = `${url}/templates`;
     axios
       .get(path, {
@@ -78,7 +78,7 @@ const api = {
         console.log(error);
       });
   },
-  get_template_id: (id, token, callback) => {
+  get_templates_id: (id, token, callback) => {
     const path = `${url}/templates/${id}`;
     axios
       .get(path, {
@@ -93,7 +93,7 @@ const api = {
         console.log(error);
       });
   },
-  get_test: (token, callback) => {
+  get_tests: (token, callback) => {
     const path = `${url}/tests`;
     axios
       .get(path, {
@@ -108,7 +108,7 @@ const api = {
         console.log(error);
       });
   },
-  post_test_create: (test, callback) => {
+  post_tests_create: (test, callback) => {
     const path = `${url}/tests/create`;
     axios
       .post(path, {
@@ -124,7 +124,7 @@ const api = {
         console.log(error);
       });
   },
-  post_log_create: (log, callback) => {
+  post_logs_create: (log, callback) => {
     const path = `${url}/logs/create`;
     axios
       .post(path, {
@@ -140,8 +140,8 @@ const api = {
         console.log(error);
       });
   },
-  post_log_id_slide: (log_id, slide, callback) => {
-    const path = `${url}/logs/${log_id}/slides`;
+  post_logs_id_slides_create: (log_id, slide, callback) => {
+    const path = `${url}/logs/${log_id}/slides/create`;
     axios
       .post(path, {
         fields: slide.fields,
@@ -155,7 +155,7 @@ const api = {
         console.log(error);
       });
   },
-  get_log: (token, callback) => {
+  get_logs: (token, callback) => {
     const path = `${url}/logs`;
     axios
       .get(path, {
@@ -170,7 +170,7 @@ const api = {
         console.log(error);
       });
   },
-  get_log_id: (id, token, callback) => {
+  get_logs_id: (id, token, callback) => {
     const path = `${url}/logs/${id}`;
     axios
       .get(path, {
