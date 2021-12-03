@@ -59,14 +59,14 @@ const FileIcon = (props) => {
     // useEffect(() => {
         switch (type) {
             case "log":
-                fileSubtitle = file.slides.length + " slides";
+                fileSubtitle = file.slides.length + " slide" + (file.slides.length === 1 ? "" : "s");
                 rows = file.slides.length;
-                cols = "-"
+                cols = ""
                 break;
             case "template":
-                fileSubtitle = file.headers.length + " columns";
+                fileSubtitle = file.headers.length + " column" + (file.headers.length === 1 ? "" : "s");
                 cols = file.headers.length;
-                rows = "-"
+                rows = ""
                 break;
             default:
                 fileSubtitle = modifiedDateString;

@@ -133,8 +133,15 @@ const ManageLogs = (props) => {
         // console.log([roleLeft, roleRight]);
     }
 
+    const getFreshLog = () => {
+        api.get_logs_id(selectedLog.id, AuthContext.user.token, (data) => {setSelectedLog(data.result)});
+    }
+
     const gotNewSlide = (data) => {
         console.log(data);
+        // Get updated log after edit
+        getFreshLog();
+        
     }
 
     const postNewSlide = () => {
@@ -149,7 +156,7 @@ const ManageLogs = (props) => {
             slide.fields[columns[i]] = "";
         }
         api.post_logs_id_slides_create(logId, slide, gotNewSlide);
-        console.log(slide);
+        // console.log(slide);
     }
 
     const SideTable = (props) => {
