@@ -28,7 +28,7 @@ const App = () => {
                 </Route>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register}>
-                  <Redirect to="/regiter" />
+                  <Redirect to="/register" />
                 </Route>
                 <PrivateRoute path="/dashboard" component={Dashboard.Page} />
               </Switch>
