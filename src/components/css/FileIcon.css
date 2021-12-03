@@ -59,7 +59,8 @@
 /* .file-icon:active .info .filename, */
 .file-icon.active .info .filename {
     @apply
-    text-white;
+    text-white
+    font-bold;
 }
 /* .file-icon:active .info .subtitle, */
 .file-icon.active .info .subtitle {

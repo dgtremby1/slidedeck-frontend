@@ -63,8 +63,9 @@
 .slide-row-control .row-top {
     @apply
     rounded
-    bg-theme-light
-    text-white
+    /* bg-theme-light */
+    text-theme-light
+    text-lg
     h-10
     w-full
     flex
@@ -155,6 +156,7 @@
     @apply
     bg-theme-light
     text-white
+    text-sm
     uppercase
     font-bold;
 }
@@ -185,8 +187,12 @@
     @apply
     /* bg-red-300 */
     h-10
+    px-4
     flex
-    items-center;
+    items-center
+    absolute
+    -mt-10
+    ml-14;
 }
 
 .file-icon-badge {

@@ -9,7 +9,7 @@ import Header from "../../components/Header";
 import Auth from "../../components/Auth";
 import ActiveUsers from "../../components/ActiveUsers";
 // Import icons
-import { FaThumbsUp, FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 // Import API and static content
 import storage from "../../static/storage";

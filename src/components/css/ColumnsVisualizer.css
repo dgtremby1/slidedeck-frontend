@@ -1,0 +1,67 @@
+.columns-visualizer {
+    @apply
+    /* bg-blue-50 */
+    p-2
+    flex
+    space-x-2
+    rounded
+    overflow-hidden;
+}
+
+.vis-preview-side {
+    @apply
+    /* bg-red-400 */
+    flex-grow
+    overflow-hidden;
+}
+
+.vis-side-header {
+    @apply
+    bg-theme-dark
+    h-8
+    text-xs
+    uppercase
+    flex
+    items-center
+    justify-center
+    rounded-sm
+    overflow-hidden
+    text-white !important
+    px-4;
+}
+
+.vis-side-columns {
+    @apply
+    flex
+    space-x-1
+    mt-1
+    overflow-hidden;
+}
+
+.vis-column {
+    @apply
+    /* bg-green-100 */
+    flex-grow
+    truncate
+    /* h-10 */
+    px-2
+    py-2
+    text-sm
+    /* flex
+    items-center
+    justify-center */
+    text-center
+    rounded-sm;
+}
+
+.vis-column .divider {
+    @apply
+    my-2 !important;
+}
+
+.vis-column .subtitle {
+    @apply
+    truncate
+    uppercase
+    text-xs;
+}

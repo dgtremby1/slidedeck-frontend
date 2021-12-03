@@ -9,8 +9,9 @@ import Button from "../../components/Button";
 import Dashboard from "../../views/Dashboard";
 import FileBrowser from "../../components/FileBrowser";
 import Header from "../../components/Header";
+import ColumnsVisualizer from "../../components/ColumnsVisualizer";
 // Import icons
-import { FaList, FaRegHandPointer, FaPen, FaPlus, FaInfoCircle, FaChevronLeft, FaArrowLeft } from "react-icons/fa";
+import { FaRegHandPointer, FaPen, FaPlus, FaInfoCircle, FaChevronLeft, FaArrowLeft } from "react-icons/fa";
 import { CgMenuGridR } from "react-icons/cg";
 import { HiPlus } from "react-icons/hi";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
@@ -21,7 +22,7 @@ import FileIcon from "../../components/FileIcon";
 import api from "../../static/api";
 import Auth from "../../components/Auth";
 import LoadSpinner from "../../components/LoadSpinner";
-import dashboardItems from "../../static/dashboardItems";
+// import dashboardItems from "../../static/dashboardItems";
 
 const logPages = [
     // {name: "recent"},
@@ -196,14 +197,14 @@ const ManageLogs = (props) => {
                             </tr> */}
                         </tbody>
                     </table>
-                    {slides.length === 0 && side === "left" &&
+                    {/* {slides.length === 0 && side === "left" &&
                         <div className="no-row-message">
                             <p className="truncate subtitle italic flex items-center">
                                 <FaArrowLeft className="mr-2"/>
                                 This log is empty. Create a new slide here.
                             </p>
                         </div>
-                    }
+                    } */}
                 </div>
             </>
         )
@@ -257,7 +258,7 @@ const ManageLogs = (props) => {
                                         <div className="my-2 mx-3 mr-3.5 h-7 w-7 flex items-center justify-center">
                                             <BsFillArrowUpCircleFill className="h-4 w-4 subtitle"/>
                                         </div>
-                                        <p className="subtitle">Log created from following template</p>
+                                        <p className="subtitle">This log was created from the following template</p>
                                     </div>
                                     {selectedTemplate ?
                                         <FileIcon file={selectedTemplate} type="template"/>
@@ -274,6 +275,13 @@ const ManageLogs = (props) => {
                                 </div>
                             }
                         </div>
+                        {selectedTemplate &&
+                            <>
+                                <div className="h-4"/>
+                                <ColumnsVisualizer template={selectedTemplate}/>
+                                <div className="h-2"/>
+                            </>
+                        }
                         {!editing ?
                             <>
                                 <div className="h-2"/>
@@ -306,6 +314,7 @@ const ManageLogs = (props) => {
                     {editing &&
                         <div className="backdrop log-editor-wrapper mt-4">
                             <div className="log-editor">
+                                {/* ADD NEW SLIDE TO LOG */}
                                 <div className="slide-row-control">
                                     <div className="row-top">#</div>
                                     {slides.map((slide, i) => {return(
@@ -317,11 +326,20 @@ const ManageLogs = (props) => {
                                         icon={FaPlus} 
                                         className="row-add"
                                     />
+                                    {slides.length === 0 &&
+                                        <div className="no-row-message">
+                                            <p className="truncate subtitle italic flex items-center">
+                                                <FaArrowLeft className="mr-2"/>
+                                                This log is empty. Create a new slide here.
+                                            </p>
+                                        </div>
+                                    }
                                 </div>
+                                {/* LOG TABLE UI */}
                                 <div className="table-wrapper">
                                     <div 
                                         onMouseDown={() => {setActiveSide(0)}}
-                                        className={"table-side left " + (activeSide === 0 ? "active-side" : "")}
+                                        className={"backdrop-header-bg table-side left " + (activeSide === 0 ? "active-side" : "")}
                                     >
                                         <SideTable 
                                             side="left"
@@ -332,7 +350,7 @@ const ManageLogs = (props) => {
                                     </div>
                                     <div 
                                         onMouseDown={() => {setActiveSide(1)}}
-                                        className={"table-side right " + (activeSide === 1 ? "active-side" : "")}
+                                        className={"backdrop-header-bg table-side right " + (activeSide === 1 ? "active-side" : "")}
                                     >
                                         <SideTable 
                                             side="right"

@@ -52,7 +52,8 @@ const FileBrowser = (props) => {
     const AuthContext = useContext(Auth.Context);
     const [files, setFiles] = useState([]);
     const [active, setActive] = useState(-1);
-    const [view, setView] = useState(props.view ? props.view : 1);
+    // SET DEFAULT VIEW MODE
+    const [view, setView] = useState(props.view ? props.view : 0);
     const [loading, setLoading] = useState(false);
     const [bannerShow, setBannerShow] = useState(false);
     const [bannerText, setBannerText] = useState("");

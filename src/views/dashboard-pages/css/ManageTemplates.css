@@ -1,0 +1,17 @@
+.log-blank-message {
+    @apply
+    flex
+    items-center;
+    height: 60px;
+}
+
+.log-blank-icon {
+    @apply
+    bg-white
+    rounded-sm
+    shadow
+    ml-2
+    mr-3;
+    height: 2.75rem;
+    width: 2.1rem;
+}

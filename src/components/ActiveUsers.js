@@ -9,6 +9,7 @@ import DeleteModal from "./DeleteModal";
 // Import icons
 import { FaUserMd } from "react-icons/fa";
 import { RiDeleteBin5Fill } from "react-icons/ri";
+import { FaTrashAlt } from "react-icons/fa";
 
 const ActiveUsers = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -68,7 +69,7 @@ const ActiveUsers = (props) => {
                 <tbody>
                   <tr className="active-user-row">
                     <td className="p-4 whitespace-nowrap text-sm font-normal flex">
-                      <FaUserMd className="mr-2 rounded-full h-5 w-5 items-center justify-center" />
+                      <FaUserMd className="bg-carolina text-white mr-2 rounded-full h-5 w-5 items-center justify-center" />
                       <span className="font-semibold">Bonnie Green</span>
                     </td>
                     <td className="p-4 whitespace-nowrap text-sm font-normal">
@@ -81,15 +82,15 @@ const ActiveUsers = (props) => {
                       Technician
                     </td>
                     <td className="p-4 whitespace-nowrap text-sm font-semibold">
-                      <RiDeleteBin5Fill
-                        className="ml-8 rounded-full h-5 w-5 items-center justify-center text-red-500 cursor-pointer"
+                      <FaTrashAlt
+                        className="ml-8 h-5 w-5 items-center justify-center text-red-500 cursor-pointer"
                         onClick={() => setShowModal(true)}
                       />
                     </td>
                   </tr>
                   <tr className="active-user-row">
                     <td className="p-4 whitespace-nowrap text-sm font-normal flex">
-                      <FaUserMd className="mr-2 rounded-full h-5 w-5 items-center justify-center" />
+                      <FaUserMd className="bg-carolina text-white mr-2 rounded-full h-5 w-5 items-center justify-center" />
                       <span className="font-semibold">Master Chief</span>
                     </td>
                     <td className="p-4 whitespace-nowrap text-sm font-normal">
@@ -102,8 +103,8 @@ const ActiveUsers = (props) => {
                       Master Chief
                     </td>
                     <td className="p-4 whitespace-nowrap text-sm font-semibold">
-                      <RiDeleteBin5Fill
-                        className="ml-8 rounded-full h-5 w-5 items-center justify-center text-red-500 cursor-pointer"
+                      <FaTrashAlt
+                        className="ml-8 h-5 w-5 items-center justify-center text-red-500 cursor-pointer"
                         onClick={() => setShowModal(true)}
                       />
                     </td>
