@@ -35,11 +35,11 @@ const api = {
     const path = `${url}/register`;
     axios
       .post(path, {
-        name: user.name,
         username: user.username,
-        email: user.email,
         password: user.password,
-        code: user.code,
+        admin_generated_code: user.code,
+        full_name: user.name,
+        email: user.email,
       })
       .then((response) => {
         callback(response.data);

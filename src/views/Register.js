@@ -1,8 +1,11 @@
 // Import major dependencies
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 //Import components
 import Banner from "../components/Banner";
+import LoadSpinner from "../components/LoadSpinner";
+import Auth from "../components/Auth";
+import { useHistory } from "react-router-dom";
 
 // Import API
 import api from "../static/api";
@@ -15,6 +18,8 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 
 const Register = (props) => {
+  const AuthContext = useContext(Auth.Context);
+  const history = useHistory();
   const [bannerShow, setBannerShow] = useState(false);
   const [bannerText, setBannerText] = useState(false);
   const [fullName, setFullName] = useState("");
@@ -22,8 +27,10 @@ const Register = (props) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = () => {
+    setLoading(true);
     const user = {
       name: fullName,
       username: username,
@@ -31,6 +38,39 @@ const Register = (props) => {
       code: code,
       email: email,
     };
+
+    if (
+      user.name === "" ||
+      user.username === "" ||
+      user.password === "" ||
+      user.code === "" ||
+      user.email === ""
+    ) {
+      setBannerText(
+        "All fields are required. Please enter the information as requested."
+      );
+      setBannerShow(true);
+      setLoading(false);
+    } else {
+      const response = api.post_register(user, onSuccess);
+      if (!response) {
+        setBannerText("Registration failed. Please check your one time code.");
+      }
+    }
+  };
+
+  const onSuccess = (data) => {
+    setLoading(false);
+    //console.log(data);
+    if (data.result) {
+      const newUser = { ...data.user };
+      newUser.loggedIn = true;
+      AuthContext.setUser(newUser);
+      history.push("/dashboard/home");
+    } else {
+      AuthContext.setUser(Auth.defaultUser);
+      setBannerShow(true);
+    }
   };
   return (
     <div>
@@ -75,7 +115,7 @@ const Register = (props) => {
             <div className="mb-4 self-center text-xl sm:text-sm">
               Enter your credentials to create account
             </div>
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className="flex flex-col mb-5">
                 <label className="mb-1 text-xs tracking-wide">Name:</label>
                 <div className="relative">
@@ -259,7 +299,7 @@ const Register = (props) => {
                   <input
                     onChange={(e) => setCode(e.target.value)}
                     id="code"
-                    type="code"
+                    type="password"
                     name="code"
                     className="
                     text-sm
@@ -277,9 +317,15 @@ const Register = (props) => {
               </div>
 
               <div className="flex w-full">
-                <button
-                  type="submit"
-                  className="
+                {loading ? (
+                  <div className="w-full flex justify-center items-center">
+                    <LoadSpinner />
+                  </div>
+                ) : (
+                  <button
+                    onClick={handleSubmit}
+                    type="submit"
+                    className="
                   flex
                   mt-2
                   items-center
@@ -297,12 +343,13 @@ const Register = (props) => {
                   duration-150
                   ease-in
                 "
-                >
-                  <span className="mr-2 uppercase">Sign Up</span>
-                  <span>
-                    <FiLogIn className="h-6 w-6" />
-                  </span>
-                </button>
+                  >
+                    <span className="mr-2 uppercase">Sign Up</span>
+                    <span>
+                      <FiLogIn className="h-6 w-6" />
+                    </span>
+                  </button>
+                )}
               </div>
             </form>
           </div>
