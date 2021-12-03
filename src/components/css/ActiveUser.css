@@ -1,0 +1,5 @@
+.active-user-row:nth-of-type(even) {
+    @apply
+    bg-carolina 
+    bg-opacity-10;
+}

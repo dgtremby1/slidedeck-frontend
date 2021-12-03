@@ -231,8 +231,8 @@ const ManageLogs = (props) => {
                             <div className="h-4"/>
                             <FileBrowser 
                                 onSelect={onLogClick}
-                                from="all" 
                                 type="log"
+                                from="all" 
                             />
                             <div className="h-4"/>
                         </>

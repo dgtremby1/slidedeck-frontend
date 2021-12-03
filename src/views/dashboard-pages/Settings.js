@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 import ThemeSwitcher from "../../components/ThemeSwitcher";
 import Header from "../../components/Header";
 import Auth from "../../components/Auth";
+import ActiveUsers from "../../components/ActiveUsers";
 // Import icons
 import { FaThumbsUp, FaTrashAlt } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
@@ -30,7 +31,7 @@ const Settings = (props) => {
     return (
         <>
             <Header>
-                <p className="font-bold text-lg">Settings</p>
+            <p className="h-8 flex items-center font-bold text-lg">Settings</p>
             </Header>
             <Page className="with-header space-y-4">
 
@@ -66,8 +67,6 @@ const Settings = (props) => {
 
                 </div>
 
-                
-
                 <div className="backdrop">
                     <div className="backdrop-header">
                         <p className="h-8 flex items-center font-bold">
@@ -85,6 +84,21 @@ const Settings = (props) => {
                         icon={FaTrashAlt}
                     >Clear Cache</Button>
                 </div>
+
+                {AuthContext.user.role === "admin" &&
+                    <div className="backdrop">
+                        <div className="backdrop-header flex items-center">
+                            <p className="h-8 flex-grow flex items-center font-bold">
+                                Manage Users
+                            </p>
+                            <p className="subtitle italic">Admins only</p>
+                        </div>
+                        <div className="h-4"/>
+                        <ActiveUsers/>
+                    </div>
+                }
+
+
             </Page>
         </>
     )

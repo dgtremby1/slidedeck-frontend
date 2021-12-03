@@ -10,24 +10,38 @@ import { FaThumbsUp } from "react-icons/fa";
 // Import API and static content
 import storage from "../../static/storage";
 import Header from "../../components/Header";
+import FileBrowser from "../../components/FileBrowser";
 
-const Home = (props) => {
+const Reports = (props) => {
 
     const clearLocalStorage = () => {
         storage.removeAll();
         window.location.reload();
     }
 
+    const onLogSelect = (logFile) => {
+        // TODO
+        console.log(logFile);
+    }
+
     return (
         <>
             <Header>
-            <p className="h-8 flex items-center font-bold text-lg">Home</p>
+                <p className="h-8 flex items-center font-bold text-lg">Reports</p>
             </Header>
             <Page className="with-header">
-                <p className="flex items-center">Hello <FaThumbsUp className="ml-2"/></p>
+
+                <FileBrowser
+                    onSelect={onLogSelect}
+                    type="log"
+                    from="all"
+                />
+
+
+
             </Page>
         </>
     )
 }
 
-export default Home;
+export default Reports;

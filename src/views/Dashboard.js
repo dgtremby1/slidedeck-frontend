@@ -19,6 +19,7 @@ import Home from "./dashboard-pages/Home";
 import dashboardItems from "../static/dashboardItems";
 import storage from "../static/storage";
 import parsePath from "../static/parsePath";
+import Reports from "./dashboard-pages/Reports";
 
 const setUpDefaultState = (lastState, defaultState) => {
     const path = window.location.pathname;
@@ -74,6 +75,9 @@ const DashboardPage = (props) => {
                 break;
             case "settings":
                 setDashboardContent(<Settings/>);
+                break;
+            case "reports":
+                setDashboardContent(<Reports/>);
                 break;
             default:
                 setDashboardContent(<Page>{state.active.title}</Page>);

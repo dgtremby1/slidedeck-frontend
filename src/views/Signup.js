@@ -30,6 +30,10 @@ const Signup = (props) => {
   const [image, setImage] = useState(null);
   const [isImageNull, setIsImageNull] = useState(true);
   const [error, setError] = useState(false);
+
+  const [bannerShow, setBannerShow] = useState(false);
+  const [bannerText, setBannerText] = useState("An error has occurred.");
+
   const onImageChange = (e) => {
     const file = e.target.files[0];
     setIsImageNull(false);
@@ -76,6 +80,8 @@ const Signup = (props) => {
       const result = await api.post_upload(fileData, key);
       console.log(result);
     } catch {
+    //   setBannerText("A specific error has occurred here.");
+    //   setBannerShow(true);
       console.log("Error");
     }
   };
@@ -99,7 +105,12 @@ const Signup = (props) => {
       <Helmet>
         <title>Welcome</title>
       </Helmet>
-      <Banner>Invalid username and/or password. Please try again.</Banner>
+      <Banner 
+        show={bannerShow}
+        dismiss={() => {setBannerShow(false)}}
+      >
+        {bannerText}
+      </Banner>
       <div className="auth-background">
         <div className="auth-window">
           <div className="auth-logo">
