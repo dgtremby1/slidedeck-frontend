@@ -67,7 +67,7 @@ const Signup = (props) => {
   };
   const handleUpload = async () => {
     try {
-      const key = `${image.name}_${email}`;
+      const key = `${username}`;
       let fileData = new FormData();
       fileData.append("FileKey", image);
       fileData.append("ImageName", key);
