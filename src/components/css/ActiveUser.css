@@ -1,5 +1,11 @@
-.active-user-row:nth-of-type(even) {
+.active-user-row:nth-of-type(odd) {
     @apply
     bg-carolina 
     bg-opacity-10;
+}
+
+.active-user-row:nth-of-type(even) {
+    @apply
+    bg-carolina 
+    bg-opacity-5;
 }

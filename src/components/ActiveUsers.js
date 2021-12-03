@@ -87,6 +87,27 @@ const ActiveUsers = (props) => {
                       />
                     </td>
                   </tr>
+                  <tr className="active-user-row">
+                    <td className="p-4 whitespace-nowrap text-sm font-normal flex">
+                      <FaUserMd className="mr-2 rounded-full h-5 w-5 items-center justify-center" />
+                      <span className="font-semibold">Master Chief</span>
+                    </td>
+                    <td className="p-4 whitespace-nowrap text-sm font-normal">
+                      john117
+                    </td>
+                    <td className="p-4 whitespace-nowrap text-sm font-semibold">
+                      john117@fleetcom.unsc.un
+                    </td>
+                    <td className="p-4 whitespace-nowrap text-sm font-semibold">
+                      Master Chief
+                    </td>
+                    <td className="p-4 whitespace-nowrap text-sm font-semibold">
+                      <RiDeleteBin5Fill
+                        className="ml-8 rounded-full h-5 w-5 items-center justify-center text-red-500 cursor-pointer"
+                        onClick={() => setShowModal(true)}
+                      />
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>

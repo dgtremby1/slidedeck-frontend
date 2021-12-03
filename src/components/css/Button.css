@@ -103,3 +103,22 @@
     @apply
     text-white;
 }
+/* Set warn/danger button styles */
+.button.warn {
+    @apply
+    text-white
+    bg-red-500;
+}
+.button.warn:hover {
+    @apply
+    bg-red-400;
+}
+.button.warn:active {
+    @apply
+    filter
+    brightness-90;
+}
+.button.warn:hover .icon {
+    @apply
+    text-white;
+}
