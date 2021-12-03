@@ -53,7 +53,7 @@ const Register = (props) => {
       setLoading(false);
     } else {
       const response = api.post_register(user, onSuccess);
-      if (!response) {
+      if (!response.result) {
         setBannerText("Registration failed. Please check your one time code.");
       }
     }
@@ -355,28 +355,18 @@ const Register = (props) => {
           </div>
         </div>
         <div className="flex justify-center items-center mt-6">
-          {/* <a
-            href="#"
-            className="
-            inline-flex
-            items-center
-            font-medium
-            text-xs text-center
-          "
-          > */}
-            <span className="ml-2">
-              You have an account?
-              <p
-                className="text-xs ml-2 text-carolina font-semibold cursor-pointer"
-                onClick={() => {
+          <span className="ml-2">
+            You have an account?
+            <p
+              className="text-xs ml-2 text-carolina font-semibold cursor-pointer justify-center content-center flex"
+              onClick={() => {
                 //   history.push("/login");
-                    history.push("login");
-                }}
-              >
-                Login here
-              </p>
-            </span>
-          {/* </a> */}
+                history.push("login");
+              }}
+            >
+              Login here
+            </p>
+          </span>
         </div>
       </div>
     </div>
