@@ -355,28 +355,28 @@ const Register = (props) => {
           </div>
         </div>
         <div className="flex justify-center items-center mt-6">
-          <a
+          {/* <a
             href="#"
-            target="_blank"
             className="
             inline-flex
             items-center
             font-medium
             text-xs text-center
           "
-          >
+          > */}
             <span className="ml-2">
               You have an account?
               <p
                 className="text-xs ml-2 text-carolina font-semibold cursor-pointer"
                 onClick={() => {
-                  history.push("/login");
+                //   history.push("/login");
+                    history.push("login");
                 }}
               >
                 Login here
               </p>
             </span>
-          </a>
+          {/* </a> */}
         </div>
       </div>
     </div>

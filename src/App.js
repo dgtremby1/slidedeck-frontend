@@ -23,14 +23,19 @@ const App = () => {
           <div className="App">
             <BrowserRouter>
               <Switch>
+
                 <Route exact path="/">
                   <Redirect to="/login" />
                 </Route>
+
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/register" component={Register}>
-                  <Redirect to="/register" />
-                </Route>
+
+                <Route exact path="/register" component={Register}/>
+                  {/* <Redirect to="/register" />
+                </Route> */}
+
                 <PrivateRoute path="/dashboard" component={Dashboard.Page} />
+
               </Switch>
             </BrowserRouter>
           </div>
