@@ -27,7 +27,7 @@ const AuthProvider = (props) => {
 
     useEffect(() => {
         storage.set("last-user", user);
-        console.log(storage.getKeys());
+        // console.log(storage.getKeys());
     }, [user]);
 
     return (

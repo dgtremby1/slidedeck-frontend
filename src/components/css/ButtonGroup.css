@@ -10,11 +10,11 @@
 }
 .light .button-group {
     @apply
-    bg-gray-100;
+    bg-white;
 }
 .dark .button-group {
     @apply
-    bg-gray-700;
+    bg-gray-600;
 }
 .button-group .button {
     @apply

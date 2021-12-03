@@ -9,10 +9,11 @@ import Page from "../components/Page";
 import Sidebar from "../components/Sidebar";
 import SidebarItem from "../components/SidebarItems";
 // import HomeCards from "./dashboard-pages/HomeCards";
-import DeveloperCards from "./dashboard-pages/DeveloperArea";
+import Settings from "./dashboard-pages/Settings";
 // import Auth from "../components/Auth";
 import ManageLogs from "./dashboard-pages/ManageLogs";
 import ManageTemplates from "./dashboard-pages/ManageTemplates";
+import Home from "./dashboard-pages/Home";
 // Import icons
 // Import API and static content
 import dashboardItems from "../static/dashboardItems";
@@ -62,14 +63,17 @@ const DashboardPage = (props) => {
         history.push(state.path);
         const pathSplit = parsePath.toArray(state.path);
         switch (pathSplit[1]) {
+            case "home":
+                setDashboardContent(<Home/>);
+                break;
             case "logs":
                 setDashboardContent(<ManageLogs/>);
                 break;
             case "templates":
                 setDashboardContent(<ManageTemplates/>);
                 break;
-            case "dev":
-                setDashboardContent(<DeveloperCards/>);
+            case "settings":
+                setDashboardContent(<Settings/>);
                 break;
             default:
                 setDashboardContent(<Page>{state.active.title}</Page>);

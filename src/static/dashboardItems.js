@@ -1,9 +1,9 @@
-import { AiTwotoneFolderOpen } from "react-icons/ai";
-import { BiTable } from "react-icons/bi";
-import { FaClipboardList } from "react-icons/fa";
+// import { AiTwotoneFolderOpen } from "react-icons/ai";
+// import { BiTable } from "react-icons/bi";
+import { FaColumns, FaClipboardList, FaList } from "react-icons/fa";
 import { HiHome } from "react-icons/hi";
-import { RiBracesFill } from "react-icons/ri";
-import { MdOutlineTableRows, MdOutlineViewColumn } from "react-icons/md"
+import { GoGear } from "react-icons/go";
+// import { MdOutlineTableRows, MdOutlineViewColumn } from "react-icons/md"
 
 const dashboardItems = [
     {
@@ -19,19 +19,19 @@ const dashboardItems = [
     {
         title: "Manage Logs",
         path: "/logs",
-        icon: MdOutlineTableRows
+        icon: FaList
     }, {
         title: "Manage Templates",
         path: "/templates",
-        icon: MdOutlineViewColumn
+        icon: FaColumns
     }, {
         title: "Reports",
         path: "/reports",
         icon: FaClipboardList
     }, {
-        title: "Developer Area",
-        path: "/dev",
-        icon: RiBracesFill
+        title: "Settings",
+        path: "/settings",
+        icon: GoGear
     }
 ]
 

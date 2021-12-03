@@ -5,6 +5,42 @@
     max-height: 32rem;
     overflow-y: scroll;
 }
+
+.file-browser .list-header {
+    @apply
+    hidden;
+}
+
+.mini .list-header {
+    @apply
+    hidden !important;
+}
+
+.list .list-header {
+    @apply
+    flex
+    py-2
+    border-b
+    uppercase;
+    padding-left: 46px
+}
+
+.light .list-header {
+    @apply
+    border-gray-300;
+}
+
+.dark .list-header {
+    @apply
+    border-gray-500;
+}
+
+.list-header p.subtitle {
+    @apply
+    w-1/5
+    text-xs !important;
+}
+
 .file-browser.icons .preview-box {
     @apply
     flex 

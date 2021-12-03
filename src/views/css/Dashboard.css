@@ -86,3 +86,20 @@ svg {
     @apply
     flex-shrink-0;
 }
+
+.divider {
+    @apply
+    w-full
+    h-px
+    my-4;
+}
+
+.light .divider {
+    @apply
+    bg-gray-300;
+}
+
+.dark .divider {
+    @apply
+    bg-gray-500;
+}

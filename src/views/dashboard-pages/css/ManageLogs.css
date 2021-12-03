@@ -13,7 +13,8 @@
     bg-white
     rounded-sm
     shadow
-    ml-2;
+    ml-2
+    mr-3;
     /* w-10
     h-full; */
     height: 2.75rem;
@@ -29,37 +30,120 @@
     background-color: rgb(55,65,81);
 }
 
+.log-editor-wrapper {
+    @apply
+    p-2;
+}
+
+.manage-logs .log-editor {
+    @apply
+    relative
+    pl-14;
+}
+
+.log-editor .slide-row-control {
+    @apply
+    w-14
+    p-2
+    -ml-16
+    -mt-2
+    pt-10
+    absolute;
+    height: calc(100% + 1rem)
+}
+
+.light .slide-row-control {
+    background-color: #e1e5e9;
+}
+
+.dark .slide-row-control {
+    background-color: #2b3444;
+}
+
+.slide-row-control .row-top {
+    @apply
+    rounded
+    bg-theme-light
+    text-white
+    h-10
+    w-full
+    flex
+    items-center
+    justify-center
+    font-bold;
+}
+
+.slide-row-control .row-index {
+    @apply
+    h-10
+    w-full
+    flex
+    items-center
+    justify-center
+    text-xs
+    font-bold
+    text-carolina
+    truncate;
+}
+
+/* .slide-row-control .row-index:nth-of-type(odd) {
+    @apply
+    text-carolina-dark;
+} */
+
+.row-index > p {
+    @apply
+    truncate;
+}
+
+.slide-row-control .row-add {
+    @apply
+    m-1;
+}
+
 .log-editor .table-wrapper {
     @apply
     /* bg-red-300 */
     flex
-    space-x-1;
+    space-x-2;
 }
 
-.table-wrapper .left,
-.table-wrapper .right {
+.table-wrapper .table-side {
     @apply
     flex-grow
     overflow-hidden
     rounded;
+    width: 25%;
+    transition: width var(--transition);
+}
+
+.table-side.active-side {
+    /* @apply
+    bg-blue-500; */
+    width: 75%;
 }
 
 .table-wrapper .side-scroll {
     @apply
     overflow-x-scroll
-    w-full;
+    w-full
+    /* bg-red-50 */
+    ;
+    min-height: 32rem;
 }
 
 .table-wrapper .side-header {
     @apply
     bg-theme-dark
-    text-sm
+    text-xs
     text-white
     flex
     items-center
     justify-center
     p-2
-    truncate;
+    truncate
+    uppercase
+    h-8;
 }
 
 .table-wrapper table {
@@ -71,13 +155,18 @@
     @apply
     bg-theme-light
     text-white
-    uppercase;
+    uppercase
+    font-bold;
 }
 
 .table-wrapper table td {
     @apply
     p-2
-    text-center;
+    px-4
+    text-center
+    whitespace-nowrap
+    h-10;
+    /* min-width: 8rem; */
 }
 
 /* .table-wrapper table td:nth-child(even) {
@@ -90,4 +179,28 @@
     @apply
     bg-carolina
     bg-opacity-10;
+}
+
+.no-row-message {
+    @apply
+    /* bg-red-300 */
+    h-10
+    flex
+    items-center;
+}
+
+.file-icon-badge {
+    @apply
+    bg-theme
+    shadow
+    flex
+    items-center
+    justify-center
+    text-white !important
+    font-bold
+    rounded-sm
+    text-xs
+    h-5
+    w-5
+    flex-shrink-0;
 }

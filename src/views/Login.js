@@ -46,7 +46,7 @@ const Login = (props) => {
     }
 
     const onSuccess = (data) => {
-        console.log(data);
+        // console.log(data);
         setLoading(false);
         if (data.result) {
             const newUser = { ...data.user };

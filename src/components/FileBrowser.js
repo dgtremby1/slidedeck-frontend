@@ -52,7 +52,7 @@ const FileBrowser = (props) => {
     const AuthContext = useContext(Auth.Context);
     const [files, setFiles] = useState([]);
     const [active, setActive] = useState(-1);
-    const [view, setView] = useState(props.view ? props.view : 0);
+    const [view, setView] = useState(props.view ? props.view : 1);
     const [loading, setLoading] = useState(false);
     const [bannerShow, setBannerShow] = useState(false);
     const [bannerText, setBannerText] = useState("");
@@ -132,6 +132,13 @@ const FileBrowser = (props) => {
             </div>
             <div className="-mx-4">
                 <Banner show={bannerShow}>{bannerText}</Banner>
+            </div>
+            <div className="list-header">
+                <p className="subtitle">Name</p>
+                <p className="subtitle text-center">Slides</p>
+                <p className="subtitle text-center">Columns</p>
+                <p className="subtitle text-center">Modified</p>
+                <p className="subtitle text-center">Created</p>
             </div>
             {(fileCount > 0) ? 
                 <div className="preview-box">

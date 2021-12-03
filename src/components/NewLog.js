@@ -10,7 +10,8 @@ import LoadSpinner from "./LoadSpinner";
 import Button from "./Button";
 import Banner from "./Banner";
 // Import icons
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaRegHandPointer } from "react-icons/fa";
+import { MdOutlineTableRows, MdOutlineViewColumn } from "react-icons/md"
 // Import API and static content
 import api from "../static/api";
 import utils from "../static/utils";
@@ -23,6 +24,10 @@ const NewLog = (props) => {
     const [newLogName, setNewLogName] = useState("New Log");
     const [columns, setColumns] = useState([]);
     const [colDefaults, setColDefaults] = useState([]);
+    const [colsLeft, setColsLeft] = useState([]);
+    const [colsRight, setColsRight] = useState([]);
+    const [types, setTypes] = useState([]);
+    const [roles, setRoles] = useState(undefined);
     const [loading, setLoading] = useState(true);
     const [bannerShow, setBannerShow] = useState(false);
     const [bannerText, setBannerText] = useState("An error has occurred.");
@@ -59,16 +64,35 @@ const NewLog = (props) => {
 
     const onTemplateClick = (file) => {
         // console.log(file);
+        let leftRole = file.headers[0][1][1];
         let columns = [];
-        let defaults = [];
-        for (let header in file.headers) {
+        let colsLeft = [];
+        let colsRight = [];
+        let colDefaults = [];
+        let leftType = [];
+        let rightType = [];
+        let types = [];
+        for (let i = 0; i < file.headers.length; i++) {
             // console.log(header);
-            columns.push(header);
-            defaults.push("");
+            let name = file.headers[i][0];
+            let type = file.headers[i][1][0];
+            let role = file.headers[i][1][1];
+            columns.push(name);
+            types.push(type);
+            colDefaults.push("");
+            if (role === leftRole) {
+                colsLeft.push(name);
+            } else {
+                colsRight.push(name);
+                if (!roles) setRoles([leftRole, role]);
+            }
         }
         setSelectedTemplate(file);
         setColumns(columns);
-        setColDefaults(defaults);
+        setColDefaults(colDefaults);
+        setColsLeft(colsLeft);
+        setColsRight(colsRight);
+        setTypes(types);
     }
 
     const onNewLogSuccess = (data) => {
@@ -85,7 +109,6 @@ const NewLog = (props) => {
             setBannerText("Log name cannot be blank");
             setBannerShow(true);
         } else {
-
             const presets = [];
             for (let i = 0; i < columns.length; i++) {
                 presets.push({
@@ -99,6 +122,7 @@ const NewLog = (props) => {
                 presets: presets,
                 token: AuthContext.user.token
             };
+            // console.log(log);
             api.post_log_create(log, onNewLogSuccess);
         }
 
@@ -138,7 +162,7 @@ const NewLog = (props) => {
                         {!selectedTemplate ?
                             <div className="blank-message">
                                 <p className="subtitle italic">
-                                    No template selected
+                                    No template selected.
                                 </p>
                             </div>
                         :
@@ -165,16 +189,62 @@ const NewLog = (props) => {
                                     />
                                     </div>
                                 </div>
-                                <div className="text-center my-4">
-                                    <p className="subtitle italic">Chosen template has {columns.length} {columns.length == 1 ? "column" : "columns"}.</p>
+                                <div className="flex items-center justify-center my-4">
+                                    
+                                    <p className="subtitle italic flex items-center">
+                                        <MdOutlineViewColumn className="transform rotate-180 mr-1"/>
+                                        Chosen template has {columns.length} {columns.length == 1 ? "column" : "columns"}. Set default values below.
+                                        <FaRegHandPointer className="transform rotate-180 ml-1"/>
+                                    </p>
                                 </div>
                                 <div className="columns-preview">
-                                    {columns.map((colName, i) => {return(
+                                    <div className="cols-left">
+                                        <div className="side-header">
+                                            To be completed by {roles[0]}
+                                        </div>
+                                        <div className="cols-wrapper">
+                                            {colsLeft.map((colName, i) => {return(
+                                                <div key={i} className="template-col">
+                                                    <div className="col-name">
+                                                        <p className="truncate">{colName}</p>
+                                                    </div>
+                                                    <TextBox
+                                                        onChange={(e) => updateColumnDefault(i, e)}
+                                                        value={colDefaults[i]}
+                                                        type={types[i] === "number" ? "number" : "text"}
+                                                        placeholder={`Default ${types[i]}`} 
+                                                        className="w-full text-carolina"
+                                                    />
+                                                </div>
+                                            )})}
+                                        </div>
+                                    </div>
+                                    <div className="cols-right">
+                                        <div className="side-header">
+                                            To be completed by {roles[1]}
+                                        </div>
+                                        <div className="cols-wrapper">
+                                            {colsRight.map((colName, i) => {i += colsLeft.length; return(
+                                                <div key={i} className="template-col">
+                                                    <div className="col-name">
+                                                        <p className="truncate">{colName}</p>
+                                                    </div>
+                                                    <TextBox
+                                                        onChange={(e) => updateColumnDefault(i, e)}
+                                                        value={colDefaults[i]}
+                                                        type={types[i] === "number" ? "number" : "text"}
+                                                        placeholder={`Default ${types[i]}`} 
+                                                        className="w-full"
+                                                    />
+                                                </div>
+                                            )})}
+                                        </div>
+                                    </div>
+                                    {/* {columns.map((colName, i) => {return(
                                         <div key={i} className="template-col">
                                             <div className="col-name">
                                                 <p className="truncate">{colName}</p>
                                             </div>
-                                            <div className="h-2"/>
                                             <TextBox
                                                 onChange={(e) => updateColumnDefault(i, e)}
                                                 value={colDefaults[i]}
@@ -183,9 +253,10 @@ const NewLog = (props) => {
                                                 className="w-full"
                                             />
                                         </div>
-                                    )})}
+                                    )})} */}
+                                    <div className="flex-shrink-0 h-4 w-px"/>
                                 </div>
-                                <p className="w-full mt-2 text-center subtitle italic">Default values are optional.</p>
+                                <p className="w-full mt-2 text-center subtitle italic">Default values are optional and can be overwritten later.</p>
                             </div>
                         }
                     </div>

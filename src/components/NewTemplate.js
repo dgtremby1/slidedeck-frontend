@@ -43,6 +43,8 @@ const defaultTemplate = () => {
     for (let i = 0; i < 2; i++) {
         template.push(defaultColGroupObj());
     }
+    template[0].role = 0;
+    template[1].role = 1;
     return template;
 }
 

@@ -63,14 +63,42 @@
     rounded-sm
     text-xs
     h-5
-    w-5;
+    w-5
+    flex-shrink-0;
 }
 
 .new-log-editor .columns-preview {
     @apply
     /* bg-red-300 */
+    overflow-x-scroll
     flex
-    space-x-2;
+    space-x-2
+    -mx-4
+    px-4
+    pb-2
+    -mb-2;
+}
+
+.columns-preview .side-header {
+    @apply
+    bg-theme-dark
+    flex-grow
+    flex
+    items-center
+    justify-center
+    rounded-sm
+    p-2
+    text-xs
+    uppercase
+    /* font-bold */
+    text-white
+    mb-1;
+}
+
+.columns-preview .cols-wrapper {
+    @apply
+    flex
+    space-x-1;
 }
 
 .new-log-editor .columns-preview .template-col {
@@ -81,11 +109,15 @@
 
 .template-col .col-name {
     @apply
-    bg-red-300
+    /* bg-red-300 */
     text-sm
+    uppercase
     p-2
-    rounded
-    text-center;
+    rounded-sm
+    text-center
+    /* border */
+    mb-1;
+    min-width: 10rem;
 }
 
 .dark .new-log-editor {
@@ -93,7 +125,7 @@
 }
 
 .dark .new-log-editor .template-col .col-name {
-    background-color: #374151;
+    background-color: rgba(56, 66, 82, 0.75);
 }
 
 .light .new-log-editor {
@@ -101,5 +133,8 @@
 }
 
 .light .new-log-editor .template-col .col-name {
-    background-color: #f4f4f6;
+    @apply
+    bg-theme-light
+    text-white;
+    /* background-color: rgba(244, 244, 246, 0.75); */
 }

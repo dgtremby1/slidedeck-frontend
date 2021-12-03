@@ -1,7 +1,7 @@
 // Import CSS
 import "./css/FileIcon.css"
 // Import major dependencies
-import React from "react";
+import React, { useEffect } from "react";
 // Import components
 // Import icons
 // import { ImTable } from "react-icons/im";
@@ -48,11 +48,41 @@ const FileIcon = (props) => {
     // "log" or "template"
     const type = props.type; 
     const file = props.file;
-    const modiDate = new Date(file.touched);
+    const modifiedDate = new Date(file.touched);
+    const createdDate = new Date(file.created);
+    const modifiedDateString = `${modifiedDate.getMonth()+1}/${modifiedDate.getDate()}/${modifiedDate.getFullYear()}`;
+    const createdDateString = `${createdDate.getMonth()+1}/${createdDate.getDate()}/${createdDate.getFullYear()}`;
+    let fileSubtitle;
+    let rows;
+    let cols;
+
+    // useEffect(() => {
+        switch (type) {
+            case "log":
+                fileSubtitle = file.slides.length + " slides";
+                rows = file.slides.length;
+                cols = "-"
+                break;
+            case "template":
+                fileSubtitle = file.headers.length + " columns";
+                cols = file.headers.length;
+                rows = "-"
+                break;
+            default:
+                fileSubtitle = modifiedDateString;
+                break;
+        }
+        // console.log(file);
+    // }, [])
+    
     // const madeDate = new Date(file.created);
 
     return(
-        <button onClick={props.onClick} className={"file-icon log " + (props.active ? "active" : "")}>
+        <button 
+            title={`${type} - ${file.name}`}
+            onClick={props.onClick} 
+            className={"file-icon log " + (props.active ? "active" : "")}
+        >
             {/* <div className="icon">
                 <p className="file-size"></p>
                 <p className="file-type">LOG</p>
@@ -68,9 +98,18 @@ const FileIcon = (props) => {
                     {/* {truncate(props.file.name, 32)} */}
                     {file.name}
                 </p>
-                <p className="subtitle">
-                    {`${modiDate.getMonth()+1}/${modiDate.getDate()}/${modiDate.getFullYear()}`}
-                </p>
+                <div className="list-file-info">
+                    <p className="subtitle capitalize">{type}</p>
+                    <p className="subtitle text-center">{rows}</p>
+                    <p className="subtitle text-center">{cols}</p>
+                    <p className="subtitle text-center">{modifiedDateString}</p>
+                    <p className="subtitle text-center">{createdDateString}</p>
+                </div>
+                <div className="icon-file-info">
+                    <p className="subtitle">
+                        {fileSubtitle}
+                    </p>
+                </div>
             </div>
         </button>
     )

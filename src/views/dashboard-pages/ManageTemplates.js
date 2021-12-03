@@ -104,11 +104,17 @@ const ManageTemplates = (props) => {
     return (
         <>
             <Header>
-                <ButtonGroup active={pageState.i} buttons={[
-                    // <Button onClick={() => {changeTemplatePage(0)}} icon={FaRegClock}>Recent Templates</Button>,
-                    <Button onClick={() => {changeTemplatePage(0)}} icon={CgMenuGridR}>All Templates</Button>,
-                    <Button onClick={() => {changeTemplatePage(1)}} icon={HiPlus}>New Template</Button>
-                ]}/>
+                <div className="flex h-8 items-center space-x-4">
+                    <p className="text-lg font-bold">
+                        Manage Templates
+                    </p>
+                    <ButtonGroup active={pageState.i} buttons={[
+                        // <Button onClick={() => {changeTemplatePage(0)}} icon={FaRegClock}>Recent Templates</Button>,
+                        <Button onClick={() => {changeTemplatePage(0)}} icon={CgMenuGridR}>All Templates</Button>,
+                        <Button onClick={() => {changeTemplatePage(1)}} icon={HiPlus}>New Template</Button>
+                    ]}/>
+                </div>
+                
             </Header>
             <Page className="with-header">
                 {pageContent}

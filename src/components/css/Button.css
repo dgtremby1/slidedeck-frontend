@@ -17,11 +17,18 @@
     shadow;
     min-width: 2rem;
 }
-.button:hover {
+.button.no-text {
     @apply
-    shadow
-    bg-opacity-5;
+    w-8;
 }
+.button-group .button.no-text {
+    @apply
+    w-7;
+}
+/* .button:hover {
+    @apply
+    shadow-md;
+} */
 .button:disabled {
     @apply
     opacity-90
@@ -36,7 +43,12 @@
     h-4 
     w-4 
     mr-2
-    text-current;
+    text-current
+    flex-shrink-0;
+}
+.no-text .icon {
+    @apply
+    ml-2;
 }
 .button:hover .icon {
     @apply
@@ -48,12 +60,12 @@
 }
 .light .button {
     @apply
-    bg-gray-100;
+    /* bg-gray-100 */
+    bg-white;
 }
 .light .button:hover {
     @apply
-    shadow
-    bg-white;
+    bg-gray-100;
 }
 .light .button:active {
     @apply
@@ -61,11 +73,12 @@
 }
 .dark .button {
     @apply
-    bg-gray-700;
+    /* bg-gray-700 */
+    bg-gray-600;
 }
 .dark .button:hover {
     @apply
-    bg-gray-600;
+    bg-gray-500;
 }
 .dark .button:active {
     @apply
@@ -74,7 +87,6 @@
 /* Set special button styles */
 .button.special {
     @apply
-    shadow
     text-white
     bg-theme;
 }

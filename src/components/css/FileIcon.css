@@ -45,17 +45,23 @@
     cursor-pointer
     shadow;
 }
-.file-icon:active,
+.file-icon:active {
+    @apply
+    bg-opacity-50
+    /* filter */
+    brightness-90;
+}
+
 .file-icon.active {
     @apply
     bg-opacity-100;
 }
-.file-icon:active .info .filename,
+/* .file-icon:active .info .filename, */
 .file-icon.active .info .filename {
     @apply
     text-white;
 }
-.file-icon:active .info .subtitle,
+/* .file-icon:active .info .subtitle, */
 .file-icon.active .info .subtitle {
     @apply
     text-white
@@ -71,7 +77,9 @@
     width: 2.1rem;
 }
 .list .file-icon .info {
-    @apply truncate;
+    @apply 
+    truncate
+    w-full;
 }
 .list .file-icon .info .filename {
     @apply truncate;
@@ -90,6 +98,38 @@
     max-h-12
     overflow-hidden;
 }
+
+.file-icon .info > div {
+    @apply
+    hidden;
+}
+
+.list .list-file-info {
+    @apply
+    flex 
+    /* flex-grow
+    bg-red-300 */
+    /* bg-red-300 */
+    !important;
+}
+
+.list-file-info p.subtitle {
+    @apply
+    block
+    w-1/5;
+}
+
+.icons .icon-file-info,
+.mini .icon-file-info {
+    @apply
+    block !important;
+}
+
+.mini .list-file-info {
+    @apply
+    hidden !important;
+}
+
 
 
 

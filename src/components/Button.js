@@ -24,7 +24,7 @@ const Button = (props) => {
             title={props.title}
             ref={ref}
             disabled={props.disabled}
-            className={"button " + props.className}
+            className={"button " + (props.children ? "" : "no-text ") + props.className}
             onClick={props.onClick}
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
