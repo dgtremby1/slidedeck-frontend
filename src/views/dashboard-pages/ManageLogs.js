@@ -88,13 +88,13 @@ const ManageLogs = (props) => {
     }
 
     const fetchedSelectedTemplate = (template) => {
-        console.log(template);
+        // console.log(template);
         setSelectedTemplate(template);
         readTemplateColumns(template);
     }
 
     const onLogClick = (log) => {
-        console.log(log);
+        // console.log(log);
         setSelectedLog(log);
         setSelectedTemplate(undefined);
         api.get_templates_id(log.template, AuthContext.user.token, fetchedSelectedTemplate);
