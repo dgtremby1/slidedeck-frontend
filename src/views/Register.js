@@ -367,7 +367,12 @@ const Register = (props) => {
           >
             <span className="ml-2">
               You have an account?
-              <p className="text-xs ml-2 text-carolina font-semibold cursor-pointer">
+              <p
+                className="text-xs ml-2 text-carolina font-semibold cursor-pointer"
+                onClick={() => {
+                  history.push("/login");
+                }}
+              >
                 Login here
               </p>
             </span>
