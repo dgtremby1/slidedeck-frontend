@@ -36,8 +36,10 @@ const api = {
     axios
       .post(path, {
         name: user.name,
+        username: user.username,
+        email: user.email,
         password: user.password,
-        role: user.role,
+        code: user.code,
       })
       .then((response) => {
         callback(response.data);
