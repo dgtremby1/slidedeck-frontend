@@ -1,11 +1,11 @@
 // Import major dependencies
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 //Import components
 import Banner from "../components/Banner";
 import LoadSpinner from "../components/LoadSpinner";
 import Auth from "../components/Auth";
-import { useHistory } from "react-router-dom";
 
 // Import API
 import api from "../static/api";
