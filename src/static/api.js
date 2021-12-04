@@ -14,6 +14,9 @@ const headers = {
  *  api.get_template(token, resultHandler);
  *  */
 const api = {
+  put_report: (report_info) => {
+    return axios.put(`${url}/log/export`, report_info);
+  },
   post_upload: (file, key) => {
     return axios.post(microservices_url, file, { headers });
   },
