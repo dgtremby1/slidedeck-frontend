@@ -155,6 +155,22 @@ const api = {
         console.log(error);
       });
   },
+  put_logs_id_slides_edit: (log_id, slide, token, callback) => {
+    const path = `${url}/logs/${log_id}/slides/edit`;
+    axios
+      .put(path, {
+        slide: slide.slide,
+        fields: slide.fields,
+        submit: slide.submit,
+        token: token
+      })
+      .then((response) => {
+        callback(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
   get_logs_id_slides: (log_id, token, callback) => {
     const path = `${url}/logs/${log_id}/slides`;
     axios

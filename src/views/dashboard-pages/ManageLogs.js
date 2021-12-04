@@ -1,7 +1,7 @@
 // Import CSS
 import "./css/ManageLogs.css";
 // Import major dependencies
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 // Import components
 import Page from "../../components/Page";
 import ButtonGroup from "../../components/ButtonGroup";
@@ -22,6 +22,7 @@ import FileIcon from "../../components/FileIcon";
 import api from "../../static/api";
 import Auth from "../../components/Auth";
 import LoadSpinner from "../../components/LoadSpinner";
+import utils from "../../static/utils";
 // import dashboardItems from "../../static/dashboardItems";
 
 const logPages = [
@@ -75,6 +76,10 @@ const ManageLogs = (props) => {
     const [activeSide, setActiveSide] = useState(0);
     
     const [loading, setLoading] = useState(false);
+
+    // const [inputRefs, setInputRefs] = useState([]);
+
+    const TABLE_REF = useRef();
 
     const changeLogPage = (i) => {
         const pathSplit = parsePath.toArray(DashboardContext.state.path);
@@ -199,6 +204,55 @@ const ManageLogs = (props) => {
         // alert();
     }
 
+    const [workingRow, setWorkingRow] = useState([]);
+
+    const slideUpdated = (data) => {
+        console.log(data)
+    }
+
+    const updateFieldValue = (row) => {
+
+        const all_values = []
+        const all_types = typesLeft.concat(typesRight);
+        const fields = [];
+
+        const left_tr = TABLE_REF.current.querySelector(`.left tr.row-${slides[row].id}`);
+        const right_tr = TABLE_REF.current.querySelector(`.right tr.row-${slides[row].id}`);
+
+        left_tr.childNodes.forEach((child) => {
+            all_values.push(child.querySelector("input").value);
+        })
+        right_tr.childNodes.forEach((child) => {
+            all_values.push(child.querySelector("input").value);
+        })
+
+        all_values.forEach((value, i) => {
+            // console.log(value, all_types[i]);
+            if (all_types[i] === "number") {
+                if (isNaN(parseFloat(value))) {
+                    all_values[i] = 0;
+                } else {
+                    all_values[i] = parseFloat(value);
+                }
+            }
+
+            fields.push(
+                [columns[i], all_values[i]]
+            )
+        })
+
+        // console.log(fields);
+
+        const post_object = {
+            slide: slides[row].id,
+            fields: fields,
+            submit: slides[row].submitted
+        }
+
+        // console.log(post_object);
+        api.put_logs_id_slides_edit(selectedLog.id, post_object, AuthContext.user.token, slideUpdated);
+    }
+
     // COMPONENT
     const SideTable = (props) => {
         const role = props.role;
@@ -208,6 +262,7 @@ const ManageLogs = (props) => {
         const rows = props.rows;
 
         const tableRows = [];
+
         rows.map((row, i) => {
             // console.log(row);
             let tableDatas = [];
@@ -220,15 +275,20 @@ const ManageLogs = (props) => {
                             type={types[j] === "number" ? "number" : "text"}
                             placeholder={columns[j]}
                             defaultValue={column}
+                            // onBlur={() => {updateSlide(slides[i].id, i)}}
+                            // onChange={(e) => {updateFieldValue(e, i, j, side)}}
+                            onBlur={() => {updateFieldValue(i)}}
+                            // onMouseDown={focus}
                         />
                     </td>
                 );
             })
             tableRows.push(
-                <tr key={i}>
+                <tr key={i} className={"row-" + slides[i].id}>
                     {tableDatas}
                 </tr>
             )
+            // console.log(slides[i].id);
         })
 
         return(
@@ -277,6 +337,7 @@ const ManageLogs = (props) => {
                 setSlides([]);
                 setRowsLeft([]);
                 setRowsRight([]);
+                // setInputRefs([]);
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -406,7 +467,7 @@ const ManageLogs = (props) => {
                                     }
                                 </div>
                                 {/* LOG TABLE UI */}
-                                <div className="table-wrapper">
+                                <div className="table-wrapper" ref={TABLE_REF}>
                                     <div 
                                         onMouseDown={() => {setActiveSide(0)}}
                                         className={"backdrop-header-bg table-side left " + (activeSide === 0 ? "active-side" : "")}

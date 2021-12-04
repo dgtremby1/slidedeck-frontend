@@ -211,9 +211,10 @@
 
 .table-wrapper td input:focus {
     @apply
-    rounded-sm
-    ring-2
-    ring-carolina
+    text-carolina
+    /* rounded-sm */
+    /* ring-2
+    ring-carolina */
     outline-none;
 }
 
