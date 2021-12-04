@@ -64,6 +64,8 @@ const NewLog = (props) => {
 
     const onTemplateClick = (file) => {
         // console.log(file);
+        // return;
+
         let leftRole = file.headers[0][1][1];
         let columns = [];
         let colsLeft = [];
@@ -199,9 +201,9 @@ const NewLog = (props) => {
                                 </div>
                                 <div className="columns-preview">
                                     <div className="cols-left">
-                                        <div className="side-header">
+                                        {roles && <div className="side-header">
                                             To be completed by {roles[0]}
-                                        </div>
+                                        </div>}
                                         <div className="cols-wrapper">
                                             {colsLeft.map((colName, i) => {return(
                                                 <div key={i} className="template-col">
@@ -220,9 +222,9 @@ const NewLog = (props) => {
                                         </div>
                                     </div>
                                     <div className="cols-right">
-                                        <div className="side-header">
+                                        {roles && <div className="side-header">
                                             To be completed by {roles[1]}
-                                        </div>
+                                        </div>}
                                         <div className="cols-wrapper">
                                             {colsRight.map((colName, i) => {i += colsLeft.length; return(
                                                 <div key={i} className="template-col">
