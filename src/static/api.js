@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://slidedeck-backend.herokuapp.com/";
+const url = "https://slidedeck-backend.herokuapp.com";
 const microservices_url =
   "https://4gwrvrti1b.execute-api.us-east-1.amazonaws.com/dev/upload_signature";
 const headers = {

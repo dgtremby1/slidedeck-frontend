@@ -32,13 +32,15 @@
 
 .log-editor-wrapper {
     @apply
-    p-2;
+    p-2;;
 }
 
 .manage-logs .log-editor {
     @apply
     relative
-    pl-14;
+    pl-14
+    flex
+    w-full;
 }
 
 .log-editor .slide-row-control {
@@ -48,8 +50,9 @@
     -ml-16
     -mt-2
     pt-10
-    absolute;
-    height: calc(100% + 1rem)
+    mr-2
+    -mb-2;
+    /* height: calc(100% + 1rem) */
 }
 
 .light .slide-row-control {
@@ -106,7 +109,8 @@
     @apply
     /* bg-red-300 */
     flex
-    space-x-2;
+    space-x-2
+    overflow-hidden;
 }
 
 .table-wrapper .table-side {

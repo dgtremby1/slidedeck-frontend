@@ -67,9 +67,12 @@ const ManageLogs = (props) => {
     const [typesRight, setTypesRight] = useState([]);
     const [roles, setRoles] = useState([]);
 
+    const [slideIDs, setSlideIDs] = useState([]);
     const [slides, setSlides] = useState([]);
 
     const [activeSide, setActiveSide] = useState(0);
+    
+    const [loading, setLoading] = useState(false);
 
     const changeLogPage = (i) => {
         const pathSplit = parsePath.toArray(DashboardContext.state.path);
@@ -87,17 +90,13 @@ const ManageLogs = (props) => {
         })
     }
 
-    const fetchedSelectedTemplate = (template) => {
-        // console.log(template);
-        setSelectedTemplate(template);
-        readTemplateColumns(template);
-    }
-
-    const onLogClick = (log) => {
+    const selectLog = (log) => {
         // console.log(log);
         setSelectedLog(log);
         setSelectedTemplate(undefined);
-        api.get_templates_id(log.template, AuthContext.user.token, fetchedSelectedTemplate);
+        api.get_templates_id(log.template, AuthContext.user.token, gotSelectedTemplate);
+        // setSlideIDs(log.slides);
+        // console.log(log.slides);
     }
 
     const readTemplateColumns = (template) => {
@@ -135,16 +134,26 @@ const ManageLogs = (props) => {
 
     const gotFreshLog = (data) => {
         console.log(data);
+        setLoading(false);
+        setSelectedLog(data.result);
+        // setSlideIDs(data.result.slides);
     }
     
     const gotNewSlide = (data) => {
-        console.log(data);
+        // console.log(data);
         // Get updated log after edit
         // getFreshLog();
-        // api.get_logs_id(selectedLog.id, AuthContext.user.token, gotFreshLog);
+        api.get_logs_id(selectedLog.id, AuthContext.user.token, gotFreshLog);
+    }
+
+    const gotSelectedTemplate = (template) => {
+        // console.log(template);
+        setSelectedTemplate(template);
+        readTemplateColumns(template);
     }
 
     const postNewSlide = () => {
+        setLoading(true);
         const token = AuthContext.user.token;
         const logId = selectedLog.id;
         const slide = {
@@ -155,11 +164,18 @@ const ManageLogs = (props) => {
         for (let i = 0; i < columns.length; i++) {
             slide.fields[columns[i]] = "";
         }
-        // api.post_logs_id_slides_create(logId, slide, gotNewSlide);
+        api.post_logs_id_slides_create(logId, slide, gotNewSlide);
         // console.log(slide);
-        alert();
+        // alert();
     }
 
+    const getSlidesFromList = (slideIDs) => {
+        slideIDs.map((id, i) => {
+            // api.getS
+        })
+    }
+
+    // COMPONENT
     const SideTable = (props) => {
         const role = props.role;
         const columns = props.columns;
@@ -225,6 +241,14 @@ const ManageLogs = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageState]);
 
+    useEffect(() => {
+        //TODO
+        if (selectedLog) {
+            setSlideIDs(selectedLog.slides);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedLog]);
+
     // const [pageState, setPageState] = useState(0);
 
     let pageContent;
@@ -239,7 +263,7 @@ const ManageLogs = (props) => {
                             </p>
                             <div className="h-4"/>
                             <FileBrowser 
-                                onSelect={onLogClick}
+                                onSelect={selectLog}
                                 type="log"
                                 from="all" 
                             />
@@ -325,16 +349,22 @@ const ManageLogs = (props) => {
                                 {/* ADD NEW SLIDE TO LOG */}
                                 <div className="slide-row-control">
                                     <div className="row-top">#</div>
-                                    {slides.map((slide, i) => {return(
+                                    {slideIDs.map((slide, i) => {return(
                                         <div className="row-index" key={i}><p>{i+1}</p></div>
                                     )})}
-                                    <Button 
-                                        onClick={postNewSlide}
-                                        title="add a new slide (row)" 
-                                        icon={FaPlus} 
-                                        className="row-add"
-                                    />
-                                    {slides.length === 0 &&
+                                    {!loading ?
+                                        <Button 
+                                            onClick={postNewSlide}
+                                            title="add a new slide (row)" 
+                                            icon={FaPlus} 
+                                            className="row-add"
+                                        />
+                                        :
+                                        <div className="h-10 w-10 flex items-center justify-center">
+                                            <LoadSpinner/>
+                                        </div>
+                                    }
+                                    {slideIDs.length === 0 &&
                                         <div className="no-row-message">
                                             <p className="truncate subtitle italic flex items-center">
                                                 <FaArrowLeft className="mr-2"/>
