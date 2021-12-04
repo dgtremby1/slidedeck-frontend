@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 import ThemeSwitcher from "../../components/ThemeSwitcher";
 import Auth from "../../components/Auth";
 import LoadSpinner from "../../components/LoadSpinner";
+import Banner from "../../components/Banner";
 // Import icons
 import { FaThumbsUp } from "react-icons/fa";
 import { FaFileDownload } from "react-icons/fa";
@@ -35,7 +36,9 @@ const Reports = (props) => {
   const [date, setDate] = useState({});
   const [showPickDate, setShowPickDate] = useState(false);
   const [currentLogFile, setCurrentLogFile] = useState(null);
+  const [showError, setShowError] = useState(false);
   const [showMessage, setShowMessage] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
   const [showLoading, setShowLoading] = useState(false);
   useEffect(() => {
     if (date !== {}) {
@@ -58,6 +61,20 @@ const Reports = (props) => {
   };
 
   const onGenerateReport = async () => {
+    const months = [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+    ];
     try {
       const report_info = {
         token: AuthContext.user.token,
@@ -66,26 +83,52 @@ const Reports = (props) => {
         month: date.month,
         day: date.day,
       };
-      //console.log(report_info);
-      const response = await api.put_report(report_info);
-      const result = response.data.result;
-      const headers = result.headers.map((header) => {
-        return header[0];
-      });
-      const slides = result.slides.map((s) => {
-        const slide = s.fields.map((item) => {
-          return item[1];
+      const currentYear = new Date().getFullYear();
+      if (report_info.day < 0 || report_info.day > 31) {
+        setErrorMessage("Invalid day. Please enter a valid day.");
+        setShowError(true);
+      } else if (report_info.year > currentYear) {
+        setErrorMessage("Invalid year. Please enter a valid year.");
+        setShowError(true);
+      } else if (
+        (report_info.day < 0 || report_info.day > 31) &&
+        report_info.year > currentYear
+      ) {
+        setErrorMessage(
+          "Invalid day and year. Please enter a valid day and a valid year."
+        );
+        setShowError(true);
+      } else if (
+        report_info.month === "" ||
+        report_info.day === "" ||
+        report_info.year === ""
+      ) {
+        setErrorMessage(
+          "Some date fields are inconplete. PLease enter all date information."
+        );
+        setShowError(true);
+      } else {
+        //console.log(report_info);
+        const response = await api.put_report(report_info);
+        const result = response.data.result;
+        const headers = result.headers.map((header) => {
+          return header[0];
         });
-        return slide;
-      });
-      //console.log(slides);
-      setReport({
-        headers,
-        slides,
-        url: result.url,
-      });
-      setShowReport(true);
-      setShowMessage(true);
+        const slides = result.slides.map((s) => {
+          const slide = s.fields.map((item) => {
+            return item[1];
+          });
+          return slide;
+        });
+        //console.log(slides);
+        setReport({
+          headers,
+          slides,
+          url: result.url,
+        });
+        setShowReport(true);
+        setShowMessage(true);
+      }
     } catch (error) {
       // console.log(error);
     }
@@ -96,10 +139,19 @@ const Reports = (props) => {
       <Header>
         <p className="h-8 flex items-center font-bold text-lg">Reports</p>
       </Header>
+
       <Page className="with-header">
         <FileBrowser onSelect={onLogSelect} type="log" from="all" />
         {showPickDate && (
           <div className="backdrop mt-5">
+            <Banner
+              dismiss={() => {
+                setShowError(false);
+              }}
+              show={showError}
+            >
+              {errorMessage}
+            </Banner>
             <PickDate
               onSelectingDate={onSelectingDate}
               onGenerateReport={onGenerateReport}
