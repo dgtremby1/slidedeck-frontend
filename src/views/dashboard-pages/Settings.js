@@ -37,6 +37,7 @@ const Settings = (props) => {
         <div className="backdrop">
           <p>Username: {AuthContext.user.username}</p>
           <p>User role: {AuthContext.user.role}</p>
+          <p>User role: {AuthContext.user.token}</p>
         </div>
 
         <div className="backdrop">
