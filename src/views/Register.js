@@ -53,9 +53,10 @@ const Register = (props) => {
       setLoading(false);
     } else {
       const response = api.post_register(user, onSuccess);
-      if (!response.result) {
-        setBannerText("Registration failed. Please check your one time code.");
-      }
+      console.log(response);
+      //   if (!response.result) {
+      //     setBannerText("Registration failed. Please check your one time code.");
+      //   }
     }
   };
 
