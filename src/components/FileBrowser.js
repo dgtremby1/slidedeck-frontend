@@ -10,7 +10,7 @@ import FileIcon from "./FileIcon";
 import LoadSpinner from "./LoadSpinner";
 // Import icons
 import { RiListCheck2, RiListCheck } from "react-icons/ri";
-import { FaThumbsUp, FaChevronDown, FaChevronRight } from "react-icons/fa";
+import { FaThumbsUp, FaChevronRight } from "react-icons/fa";
 // Import API and static content
 import api from "../static/api";
 import Banner from "./Banner";
@@ -145,7 +145,7 @@ const FileBrowser = (props) => {
                 <div className="preview-box">
                     {files.map((file, i) => {return(
                         <FileIcon 
-                            active={(i == active) ? true : false}
+                            active={(i === active) ? true : false}
                             onClick={() => {onFileClick(file, i)}} 
                             type={type} 
                             file={file} 

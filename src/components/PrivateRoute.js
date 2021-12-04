@@ -7,7 +7,7 @@ import Auth from "./Auth";
 // Import components
 // Import icons
 // Import API and static content
-import storage from "../static/storage";
+// import storage from "../static/storage";
 
 const PrivateRoute = ( { component: Component, ...rest } ) => {
 

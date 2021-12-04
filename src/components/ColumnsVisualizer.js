@@ -30,6 +30,7 @@ const ColumnsVisualizer = (props) => {
             if (roles.length === 1) roles.push(role);
         }
         columns.push(name);
+        return undefined;
     })
 
     return(

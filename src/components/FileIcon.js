@@ -1,7 +1,7 @@
 // Import CSS
 import "./css/FileIcon.css"
 // Import major dependencies
-import React, { useEffect } from "react";
+import React from "react";
 // Import components
 // Import icons
 // import { ImTable } from "react-icons/im";

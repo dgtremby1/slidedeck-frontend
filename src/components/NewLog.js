@@ -11,7 +11,7 @@ import Button from "./Button";
 import Banner from "./Banner";
 // Import icons
 import { FaCheck, FaRegHandPointer } from "react-icons/fa";
-import { MdOutlineTableRows, MdOutlineViewColumn } from "react-icons/md"
+import { MdOutlineViewColumn } from "react-icons/md"
 // Import API and static content
 import api from "../static/api";
 import utils from "../static/utils";
@@ -69,8 +69,8 @@ const NewLog = (props) => {
         let colsLeft = [];
         let colsRight = [];
         let colDefaults = [];
-        let leftType = [];
-        let rightType = [];
+        // let leftType = [];
+        // let rightType = [];
         let types = [];
         for (let i = 0; i < file.headers.length; i++) {
             // console.log(header);
@@ -193,7 +193,7 @@ const NewLog = (props) => {
                                     
                                     <p className="subtitle italic flex items-center">
                                         <MdOutlineViewColumn className="transform rotate-180 mr-1"/>
-                                        Chosen template has {columns.length} {columns.length == 1 ? "column" : "columns"}. Set default values below.
+                                        Chosen template has {columns.length} {columns.length === 1 ? "column" : "columns"}. Set default values below.
                                         <FaRegHandPointer className="transform rotate-180 ml-1"/>
                                     </p>
                                 </div>

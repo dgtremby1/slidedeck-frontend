@@ -11,7 +11,7 @@ import FileBrowser from "../../components/FileBrowser";
 import Header from "../../components/Header";
 import ColumnsVisualizer from "../../components/ColumnsVisualizer";
 // Import icons
-import { FaRegHandPointer, FaPen, FaPlus, FaInfoCircle, FaChevronLeft, FaArrowLeft } from "react-icons/fa";
+import { FaTimes, FaCheck, FaRegHandPointer, FaPen, FaPlus, FaInfoCircle, FaChevronLeft, FaArrowLeft } from "react-icons/fa";
 import { CgMenuGridR } from "react-icons/cg";
 import { HiPlus } from "react-icons/hi";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
@@ -22,7 +22,7 @@ import FileIcon from "../../components/FileIcon";
 import api from "../../static/api";
 import Auth from "../../components/Auth";
 import LoadSpinner from "../../components/LoadSpinner";
-import utils from "../../static/utils";
+// import utils from "../../static/utils";
 // import dashboardItems from "../../static/dashboardItems";
 
 const logPages = [
@@ -73,7 +73,7 @@ const ManageLogs = (props) => {
     const [rowsLeft, setRowsLeft] = useState([]);
     const [rowsRight, setRowsRight] = useState([]);
 
-    const [activeSide, setActiveSide] = useState(0);
+    // const [activeSide, setActiveSide] = useState(0);
     
     const [loading, setLoading] = useState(false);
 
@@ -136,6 +136,7 @@ const ManageLogs = (props) => {
                 typesRight.push(type);
                 if (!roleRight) roleRight = role;
             }
+            return undefined;
         });
         setColumns(columns);
         setColumnsLeft(columnsLeft);
@@ -150,7 +151,7 @@ const ManageLogs = (props) => {
 
     // Ends with all slides downloaded and all states set up
     const readSlidesFromLog = (data) => {
-        console.log(data);
+        // console.log(data);
         setSlides(data);
         // Read slides into state arrays
         let rowsLeft = [];
@@ -165,7 +166,9 @@ const ManageLogs = (props) => {
                 } else {
                     rowsRight[i].push(fieldValue[1]);
                 }
+                return undefined;
             })
+            return undefined;
         })
         setRowsLeft(rowsLeft);
         setRowsRight(rowsRight);
@@ -174,14 +177,14 @@ const ManageLogs = (props) => {
     }
 
     const gotFreshLog = (data) => {
-        console.log(data);
+        // console.log(data);
         setLoading(false);
         setSelectedLog(data.result);
         // setSlideIDs(data.result.slides);
     }
     
     const gotNewSlide = (data) => {
-        console.log(data);
+        // console.log(data);
         // Get updated log after edit
         // getFreshLog();
         api.get_logs_id(selectedLog.id, AuthContext.user.token, gotFreshLog);
@@ -189,29 +192,34 @@ const ManageLogs = (props) => {
 
     const postNewSlide = () => {
         setLoading(true);
+        const allTypes = typesLeft.concat(typesRight);
         const token = AuthContext.user.token;
         const logId = selectedLog.id;
         const slide = {
-            submit: true,
+            submit: false,
             fields: {},
             token: token
         };
         for (let i = 0; i < columns.length; i++) {
-            slide.fields[columns[i]] = "";
+            if (allTypes[i] === "number") {
+                slide.fields[columns[i]] = 0;
+            } else {
+                slide.fields[columns[i]] = "";
+            }
         }
         api.post_logs_id_slides_create(logId, slide, gotNewSlide);
         // console.log(slide);
         // alert();
     }
 
-    const [workingRow, setWorkingRow] = useState([]);
-
     const slideUpdated = (data) => {
-        console.log(data)
+        // console.log(data)
+        // api.get_logs_id_slides(selectedLog.id, AuthContext.user.token, (data) => {
+        //     setSlides(data);
+        // })
     }
 
-    const updateFieldValue = (row) => {
-
+    const gatherFieldValues = (row) => {
         const all_values = []
         const all_types = typesLeft.concat(typesRight);
         const fields = [];
@@ -235,10 +243,10 @@ const ManageLogs = (props) => {
                     all_values[i] = parseFloat(value);
                 }
             }
-
             fields.push(
                 [columns[i], all_values[i]]
             )
+
         })
 
         // console.log(fields);
@@ -249,16 +257,22 @@ const ManageLogs = (props) => {
             submit: slides[row].submitted
         }
 
+        return post_object;
+    }
+
+    const updateFieldValue = (row) => {
+
+        const post_object = gatherFieldValues(row);
         // console.log(post_object);
         api.put_logs_id_slides_edit(selectedLog.id, post_object, AuthContext.user.token, slideUpdated);
     }
 
-    // COMPONENT
+    // COMPONENTS
     const SideTable = (props) => {
         const role = props.role;
         const columns = props.columns;
         const types = props.types;
-        const side = props.side;
+        // const side = props.side;
         const rows = props.rows;
 
         const tableRows = [];
@@ -282,6 +296,7 @@ const ManageLogs = (props) => {
                         />
                     </td>
                 );
+                return undefined;
             })
             tableRows.push(
                 <tr key={i} className={"row-" + slides[i].id}>
@@ -289,6 +304,7 @@ const ManageLogs = (props) => {
                 </tr>
             )
             // console.log(slides[i].id);
+            return undefined;
         })
 
         return(
@@ -319,6 +335,44 @@ const ManageLogs = (props) => {
                     </table>
                 </div>
             </>
+        )
+    }
+
+    const SubmitToggle = (props) => {
+        // const slideID = props.slide
+
+        // TABLE_REF
+
+        const updated = (data) => {
+            // console.log(data)
+            api.get_logs_id_slides(selectedLog.id, AuthContext.user.token, readSlidesFromLog)
+        }
+
+        const slideSubmitStatus = (row, submit) => {
+            const post_object = gatherFieldValues(row);
+            post_object.submit = submit;
+            // console.log(post_object);
+            api.put_logs_id_slides_edit(selectedLog.id, post_object, AuthContext.user.token, updated);
+        }
+
+        const slide = props.slide;
+        return(
+            <div className="submit-toggle">
+                <div className="backdrop-header-bg">
+                    <button
+                        onClick={()=>{slideSubmitStatus(props.index, false)}} 
+                        className={slide.submitted ? "" : "active"}
+                    >
+                            <FaTimes/>
+                    </button>
+                    <button 
+                        onClick={()=>{slideSubmitStatus(props.index, true)}}
+                        className={slide.submitted ? "active" : ""}
+                    >
+                        <FaCheck/>
+                    </button>
+                </div>
+            </div>
         )
     }
 
@@ -469,8 +523,8 @@ const ManageLogs = (props) => {
                                 {/* LOG TABLE UI */}
                                 <div className="table-wrapper" ref={TABLE_REF}>
                                     <div 
-                                        onMouseDown={() => {setActiveSide(0)}}
-                                        className={"backdrop-header-bg table-side left " + (activeSide === 0 ? "active-side" : "")}
+                                        // onMouseDown={() => {setActiveSide(0)}}
+                                        className={"backdrop-header-bg table-side left " + (AuthContext.user.role === "admin" || AuthContext.user.role === roles[0] ? "allow" : "blocked")}
                                     >
                                         <SideTable 
                                             side="left"
@@ -480,9 +534,21 @@ const ManageLogs = (props) => {
                                             rows={rowsLeft}
                                         />
                                     </div>
+                                    {/* SUBMIT CONTROLLER */}
+                                    <div className="submit-controls">
+                                        <div className="submit-header">
+                                            <p className="subtitle">ready for review</p>
+                                        </div>
+                                        {slides.map((slide, i) => {return(
+                                            <SubmitToggle index={i} key={i} slide={slide}/>
+                                        )})}
+                                        {/* <SubmitToggle slide={slides[0]}/>
+                                        <SubmitToggle/> */}
+                                    </div>
                                     <div 
-                                        onMouseDown={() => {setActiveSide(1)}}
-                                        className={"backdrop-header-bg table-side right " + (activeSide === 1 ? "active-side" : "")}
+                                        // onMouseDown={() => {setActiveSide(1)}}
+                                        // + (activeSide === 1 ? "active-side" : "") + 
+                                        className={"backdrop-header-bg table-side right " + (AuthContext.user.role === "admin" || AuthContext.user.role === roles[1] ? "allow" : "blocked")}
                                     >
                                         <SideTable 
                                             side="right"
@@ -523,10 +589,10 @@ const ManageLogs = (props) => {
                         >
                             Save and Exit
                         </Button>
-                        <ButtonGroup active={activeSide} buttons={[
+                        {/* <ButtonGroup active={activeSide} buttons={[
                             <Button className="capitalize" onClick={() => {setActiveSide(0)}}>{roles[0]}</Button>,
                             <Button className="capitalize" onClick={() => {setActiveSide(1)}}>{roles[1]}</Button>
-                        ]}/>
+                        ]}/> */}
                         <div className="h-8 flex items-center text-lg font-bold">
                             Editing
                             <div className="flex items-center space-x-1 ml-2 truncate">

@@ -8,7 +8,7 @@ import DeleteModal from "./DeleteModal";
 
 // Import icons
 import { FaUserMd } from "react-icons/fa";
-import { RiDeleteBin5Fill } from "react-icons/ri";
+// import { RiDeleteBin5Fill } from "react-icons/ri";
 import { FaTrashAlt } from "react-icons/fa";
 
 const ActiveUsers = (props) => {

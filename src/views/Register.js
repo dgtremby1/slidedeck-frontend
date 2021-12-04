@@ -12,7 +12,7 @@ import api from "../static/api";
 
 // Import icons
 import { FiLogIn } from "react-icons/fi";
-import { FaUserAlt } from "react-icons/fa";
+// import { FaUserAlt } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";

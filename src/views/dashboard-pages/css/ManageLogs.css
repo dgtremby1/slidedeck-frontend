@@ -118,14 +118,21 @@
     flex-grow
     overflow-hidden
     rounded;
-    width: 25%;
+    /* width: 25%; */
+    width: 50%;
     transition: width var(--transition);
+}
+
+.table-wrapper .table-side.blocked {
+    @apply
+    pointer-events-none !important;
 }
 
 .table-side.active-side {
     /* @apply
     bg-blue-500; */
-    width: 75%;
+    width: 50%;
+    /* width: 75%; */
 }
 
 .table-wrapper .side-scroll {
@@ -206,7 +213,8 @@
     @apply
     p-1.5
     -m-1.5
-    bg-transparent;
+    bg-transparent
+    w-full;
 }
 
 .table-wrapper td input:focus {
@@ -257,3 +265,85 @@
     w-5
     flex-shrink-0;
 }
+
+
+
+.submit-controls {
+    /* @apply
+    bg-blue-500; */
+    /* padding-top: 4.5rem; */
+}
+
+.submit-header {
+    @apply
+    w-14
+    /* bg-red-400 */
+    flex
+    items-center
+    justify-center;
+    height: 4.5rem;
+}
+
+.submit-header .subtitle {
+    @apply
+    text-xs
+    uppercase
+    text-center
+    /* uppercase !important; */
+}
+
+.submit-toggle {
+    @apply
+    /* bg-red-400 */
+    h-10
+    w-14
+    flex
+    items-center
+    justify-center;
+}
+
+.submit-toggle > div {
+    @apply
+    p-0.5
+    overflow-hidden
+    flex
+    rounded;
+}
+
+.submit-controls button {
+    @apply
+    h-6
+    w-6
+    rounded
+    flex
+    items-center
+    justify-center
+    text-xs
+    bg-opacity-0 
+    !important;
+    /* font-size: 0; */
+}
+
+.submit-controls button:first-child {
+    @apply
+    bg-red-500
+    text-red-500;
+}
+
+.submit-controls button:last-child {
+    @apply
+    bg-green-500
+    text-green-500;
+}
+
+.submit-controls button.active {
+    @apply
+    bg-opacity-100 
+    shadow
+    text-white
+    pointer-events-none
+    !important;
+}
+
+
+

@@ -19,7 +19,7 @@ import Dashboard from "../../views/Dashboard";
 import { CgMenuGridR } from "react-icons/cg";
 import { HiPlus } from "react-icons/hi";
 import { FaRegHandPointer, FaInfoCircle} from "react-icons/fa";
-import { BsFillArrowUpCircleFill } from "react-icons/bs";
+// import { BsFillArrowUpCircleFill } from "react-icons/bs";
 // Import API and static content
 // import api from "../../static/api";
 // import storage from "../../static/storage";

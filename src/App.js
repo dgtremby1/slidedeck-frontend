@@ -7,7 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 // Import components
 import Dashboard from "./views/Dashboard";
 import Login from "./views/Login";
-import Signup from "./views/Signup";
+// import Signup from "./views/Signup";
 import Register from "./views/Register";
 import Theme from "./components/Theme";
 import Auth from "./components/Auth";
