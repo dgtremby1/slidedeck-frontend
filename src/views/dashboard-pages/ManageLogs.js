@@ -67,9 +67,14 @@ const ManageLogs = (props) => {
     const [typesRight, setTypesRight] = useState([]);
     const [roles, setRoles] = useState([]);
 
+    // const [slideIDs, setSlideIDs] = useState([]);
     const [slides, setSlides] = useState([]);
+    const [rowsLeft, setRowsLeft] = useState([]);
+    const [rowsRight, setRowsRight] = useState([]);
 
     const [activeSide, setActiveSide] = useState(0);
+    
+    const [loading, setLoading] = useState(false);
 
     const changeLogPage = (i) => {
         const pathSplit = parsePath.toArray(DashboardContext.state.path);
@@ -87,20 +92,23 @@ const ManageLogs = (props) => {
         })
     }
 
-    const fetchedSelectedTemplate = (template) => {
-        // console.log(template);
-        setSelectedTemplate(template);
-        readTemplateColumns(template);
-    }
-
-    const onLogClick = (log) => {
+    // Starts with a new log being selected
+    const onLogSelect = (log) => {
         // console.log(log);
         setSelectedLog(log);
         setSelectedTemplate(undefined);
-        api.get_templates_id(log.template, AuthContext.user.token, fetchedSelectedTemplate);
+        api.get_templates_id(log.template, AuthContext.user.token, gotSelectedTemplate);
+        // setSlideIDs(log.slides);
+        // console.log(log.slides);
     }
 
-    const readTemplateColumns = (template) => {
+    const gotSelectedTemplate = (template) => {
+        // console.log(template);
+        setSelectedTemplate(template);
+        readColumnsFromTemplate(template, selectedLog);
+    }
+
+    const readColumnsFromTemplate = (template) => {
         let roleLeft = template.headers[0][1][1];
         let roleRight = undefined;
         let columns = [];
@@ -131,40 +139,98 @@ const ManageLogs = (props) => {
         setTypesRight(typesRight);
         setRoles([roleLeft, roleRight]);
         // console.log([roleLeft, roleRight]);
+
+        // alert(selectedLog.id);
+    }
+
+    // Ends with all slides downloaded and all states set up
+    const readSlidesFromLog = (data) => {
+        console.log(data);
+        setSlides(data);
+        // Read slides into state arrays
+        let rowsLeft = [];
+        let rowsRight = [];
+        data.map((slide, i) => {
+            const slideFields = slide.fields;
+            rowsLeft.push([]);
+            rowsRight.push([]);
+            slideFields.map((fieldValue, j) => {
+                if (j < columnsLeft.length) {
+                    rowsLeft[i].push(fieldValue[1]);
+                } else {
+                    rowsRight[i].push(fieldValue[1]);
+                }
+            })
+        })
+        setRowsLeft(rowsLeft);
+        setRowsRight(rowsRight);
+        // console.log(valuesLeft);
+        // console.log(valuesRight);
     }
 
     const gotFreshLog = (data) => {
         console.log(data);
+        setLoading(false);
+        setSelectedLog(data.result);
+        // setSlideIDs(data.result.slides);
     }
     
     const gotNewSlide = (data) => {
         console.log(data);
         // Get updated log after edit
         // getFreshLog();
-        // api.get_logs_id(selectedLog.id, AuthContext.user.token, gotFreshLog);
+        api.get_logs_id(selectedLog.id, AuthContext.user.token, gotFreshLog);
     }
 
     const postNewSlide = () => {
+        setLoading(true);
         const token = AuthContext.user.token;
         const logId = selectedLog.id;
         const slide = {
-            submit: false,
+            submit: true,
             fields: {},
             token: token
         };
         for (let i = 0; i < columns.length; i++) {
             slide.fields[columns[i]] = "";
         }
-        // api.post_logs_id_slides_create(logId, slide, gotNewSlide);
+        api.post_logs_id_slides_create(logId, slide, gotNewSlide);
         // console.log(slide);
-        alert();
+        // alert();
     }
 
+    // COMPONENT
     const SideTable = (props) => {
         const role = props.role;
         const columns = props.columns;
         const types = props.types;
         const side = props.side;
+        const rows = props.rows;
+
+        const tableRows = [];
+        rows.map((row, i) => {
+            // console.log(row);
+            let tableDatas = [];
+            row.map((column, j) => {
+                tableDatas.push(
+                    <td key={j} className={types[j] === "number" ? "number-cell" : "text-cell"}>
+                        {/* {column} */}
+                        <input 
+                            // className="text-box"
+                            type={types[j] === "number" ? "number" : "text"}
+                            placeholder={columns[j]}
+                            defaultValue={column}
+                        />
+                    </td>
+                );
+            })
+            tableRows.push(
+                <tr key={i}>
+                    {tableDatas}
+                </tr>
+            )
+        })
+
         return(
             <>
                 <div className="side-header">
@@ -175,44 +241,22 @@ const ManageLogs = (props) => {
                         <thead>
                             <tr>
                                 {columns.map((column, i) => {return(
-                                    <td key={i}>{column}</td>
+                                    <td 
+                                        key={i}
+                                        className={types[i] === "number" ? "number-cell" : "text-cell"}
+                                    >
+                                        {column}
+                                    </td>
                                 )})}
                             </tr>
                         </thead>
                         <tbody>
-                            {slides.map((slide, i) => {return(
+                            {/* {slides.map((slide, i) => {return(
                                 <tr key={i}><td>{i}</td></tr>
-                            )})}
-                            {/* <tr>
-                                <td>hello</td>
-                                <td>world</td>
-                                <td>world</td>
-                                <td>world</td>
-                                <td>hello</td>
-                                <td>world</td>
-                                <td>world</td>
-                                <td>world</td>
-                            </tr>
-                            <tr>
-                                <td>hello</td>
-                                <td>world</td>
-                                <td>world</td>
-                                <td>world</td>
-                                <td>hello</td>
-                                <td>world</td>
-                                <td>world</td>
-                                <td>world</td>
-                            </tr> */}
+                            )})} */}
+                            {tableRows}
                         </tbody>
                     </table>
-                    {/* {slides.length === 0 && side === "left" &&
-                        <div className="no-row-message">
-                            <p className="truncate subtitle italic flex items-center">
-                                <FaArrowLeft className="mr-2"/>
-                                This log is empty. Create a new slide here.
-                            </p>
-                        </div>
-                    } */}
                 </div>
             </>
         )
@@ -225,7 +269,19 @@ const ManageLogs = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageState]);
 
-    // const [pageState, setPageState] = useState(0);
+    useEffect(() => {
+        if (selectedTemplate && selectedLog && columnsLeft) {
+            if (selectedLog.slides.length > 0) {
+                api.get_logs_id_slides(selectedLog.id, AuthContext.user.token, readSlidesFromLog);
+            } else {
+                setSlides([]);
+                setRowsLeft([]);
+                setRowsRight([]);
+            }
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedTemplate, selectedLog, columnsLeft]);
+
 
     let pageContent;
     switch (pageState.i) {
@@ -239,7 +295,7 @@ const ManageLogs = (props) => {
                             </p>
                             <div className="h-4"/>
                             <FileBrowser 
-                                onSelect={onLogClick}
+                                onSelect={onLogSelect}
                                 type="log"
                                 from="all" 
                             />
@@ -283,7 +339,7 @@ const ManageLogs = (props) => {
                                 </div>
                             }
                         </div>
-                        {selectedTemplate &&
+                        {selectedTemplate && !editing &&
                             <>
                                 <div className="h-4"/>
                                 <ColumnsVisualizer template={selectedTemplate}/>
@@ -328,12 +384,18 @@ const ManageLogs = (props) => {
                                     {slides.map((slide, i) => {return(
                                         <div className="row-index" key={i}><p>{i+1}</p></div>
                                     )})}
-                                    <Button 
-                                        onClick={postNewSlide}
-                                        title="add a new slide (row)" 
-                                        icon={FaPlus} 
-                                        className="row-add"
-                                    />
+                                    {!loading ?
+                                        <Button 
+                                            onClick={postNewSlide}
+                                            title="add a new slide (row)" 
+                                            icon={FaPlus} 
+                                            className="row-add"
+                                        />
+                                        :
+                                        <div className="h-10 w-10 flex items-center justify-center">
+                                            <LoadSpinner/>
+                                        </div>
+                                    }
                                     {slides.length === 0 &&
                                         <div className="no-row-message">
                                             <p className="truncate subtitle italic flex items-center">
@@ -354,6 +416,7 @@ const ManageLogs = (props) => {
                                             role={roles[0]}
                                             columns={columnsLeft}
                                             types={typesLeft}
+                                            rows={rowsLeft}
                                         />
                                     </div>
                                     <div 
@@ -365,6 +428,7 @@ const ManageLogs = (props) => {
                                             role={roles[1]}
                                             columns={columnsRight}
                                             types={typesRight}
+                                            rows={rowsRight}
                                         />
                                     </div>
                                 </div>

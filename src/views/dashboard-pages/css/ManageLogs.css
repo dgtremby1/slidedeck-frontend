@@ -32,13 +32,15 @@
 
 .log-editor-wrapper {
     @apply
-    p-2;
+    p-2;;
 }
 
 .manage-logs .log-editor {
     @apply
     relative
-    pl-14;
+    pl-14
+    flex
+    w-full;
 }
 
 .log-editor .slide-row-control {
@@ -48,8 +50,9 @@
     -ml-16
     -mt-2
     pt-10
-    absolute;
-    height: calc(100% + 1rem)
+    mr-2
+    -mb-2;
+    /* height: calc(100% + 1rem) */
 }
 
 .light .slide-row-control {
@@ -106,7 +109,8 @@
     @apply
     /* bg-red-300 */
     flex
-    space-x-2;
+    space-x-2
+    overflow-hidden;
 }
 
 .table-wrapper .table-side {
@@ -128,6 +132,8 @@
     @apply
     overflow-x-scroll
     w-full
+    /* pb-4
+    -mb-4 */
     /* bg-red-50 */
     ;
     min-height: 32rem;
@@ -152,23 +158,63 @@
     w-full;
 }
 
+.light .table-wrapper table {
+    @apply
+    bg-white;
+}
+
+.dark .table-wrapper table {
+    @apply
+    bg-gray-800;
+}
+
 .table-wrapper table thead {
     @apply
     bg-theme-light
     text-white
-    text-sm
+    text-xs
     uppercase
     font-bold;
 }
 
+/* .table-wrapper table thead td {
+    @apply
+    pl-4;
+} */
+
 .table-wrapper table td {
     @apply
     p-2
-    px-4
-    text-center
+    text-sm
+    /* text-center */
     whitespace-nowrap
     h-10;
     /* min-width: 8rem; */
+}
+
+.table-wrapper td.number-cell {
+    @apply
+    text-right;
+}
+
+.table-wrapper td.number-cell input {
+    @apply
+    text-right;
+}
+
+.table-wrapper td input {
+    @apply
+    p-1.5
+    -m-1.5
+    bg-transparent;
+}
+
+.table-wrapper td input:focus {
+    @apply
+    rounded-sm
+    ring-2
+    ring-carolina
+    outline-none;
 }
 
 /* .table-wrapper table td:nth-child(even) {
