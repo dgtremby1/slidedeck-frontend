@@ -14,6 +14,13 @@ const headers = {
  *  api.get_template(token, resultHandler);
  *  */
 const api = {
+  get_signup: (credentials) => {
+    return axios.get(
+      `${url}/signup?token=${credentials.token}&expiration_length=${48}&role=${
+        credentials.role
+      }&email=${credentials.email}`
+    );
+  },
   put_report: (report_info) => {
     return axios.put(`${url}/log/export`, report_info);
   },
@@ -165,7 +172,7 @@ const api = {
         slide: slide.slide,
         fields: slide.fields,
         submit: slide.submit,
-        token: token
+        token: token,
       })
       .then((response) => {
         callback(response.data);
