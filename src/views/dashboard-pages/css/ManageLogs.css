@@ -132,6 +132,8 @@
     @apply
     overflow-x-scroll
     w-full
+    /* pb-4
+    -mb-4 */
     /* bg-red-50 */
     ;
     min-height: 32rem;
@@ -156,23 +158,63 @@
     w-full;
 }
 
+.light .table-wrapper table {
+    @apply
+    bg-white;
+}
+
+.dark .table-wrapper table {
+    @apply
+    bg-gray-800;
+}
+
 .table-wrapper table thead {
     @apply
     bg-theme-light
     text-white
-    text-sm
+    text-xs
     uppercase
     font-bold;
 }
 
+/* .table-wrapper table thead td {
+    @apply
+    pl-4;
+} */
+
 .table-wrapper table td {
     @apply
     p-2
-    px-4
-    text-center
+    text-sm
+    /* text-center */
     whitespace-nowrap
     h-10;
     /* min-width: 8rem; */
+}
+
+.table-wrapper td.number-cell {
+    @apply
+    text-right;
+}
+
+.table-wrapper td.number-cell input {
+    @apply
+    text-right;
+}
+
+.table-wrapper td input {
+    @apply
+    p-1.5
+    -m-1.5
+    bg-transparent;
+}
+
+.table-wrapper td input:focus {
+    @apply
+    rounded-sm
+    ring-2
+    ring-carolina
+    outline-none;
 }
 
 /* .table-wrapper table td:nth-child(even) {

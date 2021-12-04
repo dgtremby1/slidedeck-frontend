@@ -155,6 +155,21 @@ const api = {
         console.log(error);
       });
   },
+  get_logs_id_slides: (log_id, token, callback) => {
+    const path = `${url}/logs/${log_id}/slides`;
+    axios
+      .get(path, {
+        params: {
+          token: token,
+        },
+      })
+      .then((response) => {
+        callback(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
   get_logs: (token, callback) => {
     const path = `${url}/logs`;
     axios
