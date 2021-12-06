@@ -249,7 +249,7 @@ const Reports = (props) => {
                             type="button"
                           >
                             <FaFileDownload className="mr-1 " />
-                            Click to Donwload
+                            Click to Download
                           </button>
                         </a>
                       </div>
